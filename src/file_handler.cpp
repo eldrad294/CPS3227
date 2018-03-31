@@ -3,11 +3,11 @@
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
-//#include "particle.cpp"
+#include "particle.cpp"
 
 class FileHandler{
     public:
-        int save_to_file(std::string file_path)
+        short save_to_file(std::string file_path)
         {
             return 0;
         }
@@ -26,7 +26,7 @@ class FileHandler{
 
         Returns 0 on successfull open, otherwise returns 1
         */
-        int read_from_file(std::string file_path)
+        short read_from_file(std::string file_path)
         {
             std::string line;
             std::string temp_line;

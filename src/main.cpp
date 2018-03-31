@@ -3,11 +3,7 @@ Main class, which contains all the logic
 */
 // Library Imports
 #include <iostream>
-#include <vector>
-#include <stdlib.h>
-#include <algorithm>
 #include "file_handler.cpp"
-#include "vector2.h"
 /*
 Constant Declarations
 */
@@ -15,8 +11,8 @@ const std::string input_file_path = "/home/gabriel/HighPerformanceComputing/CPS3
 /*
 Method Definitions
 */
-int save_to_file(std::string);
-int read_from_file(std::string);
+short save_to_file(std::string);
+short read_from_file(std::string);
 /*
 Main Routine
 */
