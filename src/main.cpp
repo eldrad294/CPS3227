@@ -12,28 +12,6 @@ Main class, which contains all the logic
 Constant Declarations
 */
 const std::string input_file_path = "/home/gabriel/HighPerformanceComputing/CPS3227_Assignment/input/input_64.txt";    
-const int fieldWidth = 1000;
-const int fieldHalfWidth = fieldWidth >> 1;
-const int fieldHeight = 1000;
-const int fieldHalfHeight = fieldHeight >> 1;
-const float minBodyMass = 2.5f;
-const float maxBodyMassVariance = 5.f;
-/*
- * Particle structure
- */
-struct Particle
-{
-	Vector2 Position;
-	Vector2 Velocity;
-	float	Mass;
-	
-	Particle(void) 
-		: Position( ((float)rand()) / RAND_MAX * fieldWidth - fieldHalfWidth,
-					((float)rand()) / RAND_MAX * fieldHeight - fieldHalfHeight)
-		, Velocity( 0.f, 0.f )
-		, Mass ( ((float)rand()) / RAND_MAX * maxBodyMassVariance + minBodyMass )
-	{ }
-};
 /*
 Method Definitions
 */

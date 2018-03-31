@@ -1,6 +1,9 @@
+// Library Imports
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <stdlib.h>
+//#include "particle.cpp"
 
 class FileHandler{
     public:
@@ -26,8 +29,16 @@ class FileHandler{
         int read_from_file(std::string file_path)
         {
             std::string line;
+            std::string temp_line;
             std::ifstream myfile;
+            std::string temp_mass;
+            std::string temp_X;
+            std::string temp_Y;
             char delimeter = ',';
+            short comma_counter;
+            float mass;
+            float X;
+            float Y;
 
             /*
             Opens input file at specified path 
@@ -39,7 +50,32 @@ class FileHandler{
                 //Fetches content from the file line by line
                 while(getline(myfile,line))
                 {
-                    std::cout << line << "\n";
+                    temp_mass = "";
+                    temp_X = "";
+                    temp_Y = "";
+                    comma_counter = 0;
+                    
+                    // Parse each line by stripping away whitespace, and splitting values by comma delimeter
+                    for (unsigned i=0;i<line.length();i++)
+                    {
+                        if (line[i] == delimeter)
+                            comma_counter += 1;
+                        else if(line[i] != ' ' and comma_counter == 0)
+                            temp_mass += line[i];
+                        else if (line[i] != ' ' and comma_counter == 1)
+                            temp_X += line[i];
+                        else if (line[i] != ' ' and comma_counter == 2)
+                            temp_Y += line[i];
+                    }
+
+                    // Type Conversion from string to float values
+                    mass = atof(temp_mass.c_str());
+                    X = atof(temp_X.c_str());
+                    Y = atof(temp_Y.c_str());
+                    // std::cout << mass << "\n";
+                    // std::cout << X << "\n";
+                    // std::cout << Y << "\n";
+                    // std::cout << "--------------\n";
                 }
                 myfile.close();
             }else
