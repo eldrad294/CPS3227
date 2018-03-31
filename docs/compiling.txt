@@ -1,1 +1,3 @@
-g++ -std=c++11 src/main.cpp -o build/main.o
+g++ -Wall src/*.cpp -o build/main
+
+https://sites.google.com/a/case.edu/hpc-upgraded-cluster/home/important-notes-for-new-users/compiling--linking
