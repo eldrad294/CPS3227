@@ -7,9 +7,29 @@
 
 class FileHandler{
     public:
-        short save_to_file(std::string file_path)
+        /*
+        * Commit particle masses and positions to file in CSV format
+        */
+        void PersistPositions(const std::string &p_strFilename, std::vector<Particle> &p_bodies)
         {
-            return 0;
+            std::cout << "Writing to file: " << p_strFilename << std::endl;
+            
+            std::ofstream output(p_strFilename.c_str());
+            
+            if (output.is_open())
+            {	
+                for (unsigned j = 0; j < p_bodies.size(); j++)
+                {
+                    output << 	p_bodies[j].Mass << ", " <<
+                        p_bodies[j].Position.Element[0] << ", " <<
+                        p_bodies[j].Position.Element[1] << std::endl;
+                }
+                
+                output.close();
+            }
+            else
+                std::cerr << "Unable to persist data to file:" << p_strFilename << std::endl;
+
         }
 
         /*
@@ -24,9 +44,9 @@ class FileHandler{
         3.5948, 32.7673, -41.3501
         5.89648, 178.865, -452.955
 
-        Returns 0 on successfull open, otherwise returns 1
+        Returns a vector list with all loaded particles from file
         */
-        short read_from_file(std::string file_path)
+        std::vector<Particle> read_from_file(std::string file_path)
         {
             std::string line;
             std::string temp_line;
@@ -39,6 +59,7 @@ class FileHandler{
             float mass;
             float X;
             float Y;
+            std::vector<Particle> bodies;
 
             /*
             Opens input file at specified path 
@@ -72,18 +93,20 @@ class FileHandler{
                     mass = atof(temp_mass.c_str());
                     X = atof(temp_X.c_str());
                     Y = atof(temp_Y.c_str());
+                    bodies.push_back(Particle(mass, X, Y));
                     // std::cout << mass << "\n";
                     // std::cout << X << "\n";
                     // std::cout << Y << "\n";
                     // std::cout << "--------------\n";
                 }
                 myfile.close();
+                std::cout << "Files Loaded Successfully\n";
             }else
             {
-                std::cout << "Unable to open file at location: [" << file_path << "]";
-                return 1;   
+                std::cerr << "Unable to open file at location: [" << file_path << "]\n";
+                exit(1);   
             }
             
-            return 0;
+            return bodies;
         }
 };
