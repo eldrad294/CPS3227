@@ -9,7 +9,6 @@ Main class, which contains all the logic
 /*
 Constant Declarations
 */
-const std::string input_file_path = "/home/gabriel/HighPerformanceComputing/CPS3227_Assignment/input/input_64.txt";    
 const int maxIteration = 1000;
 const float deltaT = 0.01f;
 const float gTerm = 20.f;
@@ -30,10 +29,16 @@ int main(int argc, char **argv)
     Particle p;
     std::stringstream fileOutput;
     std::vector<Particle> bodies;
+    std::string input_file_path = "../CPS3227_Assignment/input/input_64.txt";    
     std::string output_file_name = "../CPS3227_Assignment/output/nbody_";
     /*
     Main Logic
     */
+    // Check if input file has been specified. Otherwise default to input_64.txt
+    if(argc > 1)
+    {
+        input_file_path = argv[1];
+    }
     // Opening Input File
     bodies = fh.read_from_file(input_file_path);
 
