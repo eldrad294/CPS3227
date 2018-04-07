@@ -12,9 +12,9 @@ Main class, which contains all the logic
 /*
 Constant Declarations
 */
-const int maxIteration = 1000;
-const float deltaT = 0.01f;
-const float gTerm = 20.f;
+#define maxIteration 1000
+#define deltaT 0.01f
+#define gTerm 20.f
 /*
 Method Definitions
 */
@@ -81,6 +81,7 @@ void getInfo(void)
     std::cout << "Clock Frequency\n";
     std::cout << "wtime = " << omp_get_wtime() << "\n";
     std::cout << "Number of processors = " << omp_get_num_procs() << "\n";
+    std::cout << "Number of threads = " << omp_get_num_threads() << "\n";
     std::cout << "wtick(Clock Frequency) = " << omp_get_wtick() << "\n";
     std::cout << "1/wtick = " << 1.0/omp_get_wtick() << "\n\n";
 }

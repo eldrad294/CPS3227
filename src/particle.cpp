@@ -29,12 +29,15 @@ class Particle
             Vector2 direction, force, acceleration;
             float distance;
 
+            //#pragma omp parallel for default(none) private(force,acceleration,direction,distance) shared(p_bodies,p_gravitationalTerm)
+            #pragma omp parallel for default(none) private(force, acceleration) shared(p_bodies,p_gravitationalTerm)
             for (size_t j = 0; j < p_bodies.size(); ++j)
             {
                 Particle &p1 = p_bodies[j];
             
                 force = 0.f, acceleration = 0.f;
             
+                #pragma omp parallel for default(none) private(direction,distance,force) shared(p_bodies,j,p1)
                 for (size_t k = 0; k < p_bodies.size(); ++k)
                 {
                     if (k == j) continue;
@@ -64,10 +67,23 @@ class Particle
         */
         void MoveBodies(std::vector<Particle> &p_bodies, float p_deltaT)
         {
+            #pragma omp parallel for default(none) shared(p_bodies, p_deltaT)
             for (size_t j = 0; j < p_bodies.size(); ++j)
             {
                 p_bodies[j].Position += p_bodies[j].Velocity * p_deltaT;
             }
+
+            // #pragma omp parallel 
+            // {
+            //     Particle private_body;
+            //     #pragma omp for nowait
+            //     for (size_t j = 0; j < p_bodies.size(); ++j)
+            //     {
+            //         private_body.Position = p_bodies[j].Velocity * p_deltaT;
+            //         #pragma omp critical
+            //         p_bodies[j].Position += private_body.Position;
+            //     }
+            // }
         }
 };
 #endif
