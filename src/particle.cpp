@@ -66,22 +66,29 @@ class Particle
         * Update particle positions
         */
         void MoveBodies(std::vector<Particle> &p_bodies, float p_deltaT)
+        //void MoveBodies(std::vector<Particle> p_bodies, float p_deltaT)
         {
-            #pragma omp parallel for default(none) shared(p_bodies, p_deltaT)
+            // Sequential Method
             for (size_t j = 0; j < p_bodies.size(); ++j)
             {
                 p_bodies[j].Position += p_bodies[j].Velocity * p_deltaT;
             }
-
-            // #pragma omp parallel 
+            // // Parallel Method
+            // std::vector<Particle> temp_list;
+            // #pragma omp parallel default(none) shared(p_bodies, p_deltaT) private(temp_list)
             // {
-            //     Particle private_body;
-            //     #pragma omp for nowait
+            //     #pragma omp for schedule(static)
             //     for (size_t j = 0; j < p_bodies.size(); ++j)
             //     {
-            //         private_body.Position = p_bodies[j].Velocity * p_deltaT;
-            //         #pragma omp critical
-            //         p_bodies[j].Position += private_body.Position;
+            //         temp_list.push_back(p_bodies[j]);
+            //         temp_list[j].Position += p_bodies[j].Velocity * p_deltaT;
+            //     }
+            //     p_bodies.clear();
+            //     #pragma omp for schedule(static) ordered //Barrier
+            //     for(int i=0; i < omp_get_num_threads(); i++)
+            //     {
+            //         #pragma omp ordered // Ensures that vectors are concatenated in correct order
+            //         p_bodies.insert(p_bodies.end(),temp_list.begin(),temp_list.end());
             //     }
             // }
         }

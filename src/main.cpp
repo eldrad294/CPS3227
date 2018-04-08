@@ -18,7 +18,7 @@ Constant Declarations
 /*
 Method Definitions
 */
-void PersistPositions(const std::string &p_strFilename, std::vector<Particle> &p_bodies);
+void PersistPositions(const std::string, std::vector<Particle>, bool);
 std::vector<Particle> read_from_file(std::string);
 void getInfo(void);
 double captureTimestamp(void);
@@ -32,6 +32,7 @@ int main(int argc, char **argv)
     */
     double start_time_stamp = .0;
     double end_time_stamp = .0;
+    std::string enable_output = "output_off";
     FileHandler fh;
     Particle p;
     std::stringstream fileOutput;
@@ -45,6 +46,10 @@ int main(int argc, char **argv)
 
     // Check if input file has been specified. Otherwise default to input_64.txt
     if(argc > 1)
+    {
+        enable_output = argv[2];
+    }
+    if(argc > 0)
     {
         input_file_path = argv[1];
     }
@@ -62,7 +67,7 @@ int main(int argc, char **argv)
 		
 		fileOutput.str(std::string());
 		fileOutput << output_file_name << iteration << ".txt";
-		fh.PersistPositions(fileOutput.str(), bodies);
+		fh.PersistPositions(fileOutput.str(), bodies, enable_output);
 	}
 
     // Take Final Time Measurement
@@ -81,7 +86,7 @@ void getInfo(void)
     std::cout << "Clock Frequency\n";
     std::cout << "wtime = " << omp_get_wtime() << "\n";
     std::cout << "Number of processors = " << omp_get_num_procs() << "\n";
-    std::cout << "Number of threads = " << omp_get_num_threads() << "\n";
+    std::cout << "Number of threads = " << omp_get_max_threads() << "\n";
     std::cout << "wtick(Clock Frequency) = " << omp_get_wtick() << "\n";
     std::cout << "1/wtick = " << 1.0/omp_get_wtick() << "\n\n";
 }

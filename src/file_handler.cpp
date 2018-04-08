@@ -10,9 +10,12 @@ class FileHandler{
         /*
         * Commit particle masses and positions to file in CSV format
         */
-        void PersistPositions(const std::string &p_strFilename, std::vector<Particle> &p_bodies)
+        void PersistPositions(const std::string &p_strFilename, std::vector<Particle> &p_bodies, std::string enable_output)
         {
-            std::cout << "Writing to file: " << p_strFilename << std::endl;
+            if (enable_output == "output_on")
+            {
+                std::cout << "Writing to file: " << p_strFilename << std::endl;
+            }
             
             std::ofstream output(p_strFilename.c_str());
             
