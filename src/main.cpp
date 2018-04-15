@@ -3,6 +3,7 @@ Main class, which contains all the logic and respective references
 */
 // Library Imports
 #include <omp.h>
+#include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -40,10 +41,19 @@ int main(int argc, char **argv)
     std::vector<Particle> bodies;
     std::string input_file_path = "../CPS3227_Assignment/input/input_64.txt";    
     std::string output_file_name = "../CPS3227_Assignment/output/nbody_";
+    
+    /*
+    Initialize the MPI environment
+    */
+    MPI_Init(NULL, NULL);
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD), &world_size); //Get the number of processes
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
+
     /*
     Main Logic
     */
-    
     // Check if input file has been specified. Otherwise default to input_64.txt
     if(argc > 1)
     {
@@ -53,7 +63,7 @@ int main(int argc, char **argv)
     {
         input_file_path = argv[1];
     }
-    
+
     // Opening Input File
     bodies = fh.read_from_file(input_file_path);
 
@@ -74,6 +84,11 @@ int main(int argc, char **argv)
     end_time_stamp = captureTimestamp();
     fh.reportInfo(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run.
     fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run. Saves to File.
+    
+    /*
+    Destruct MPI environment
+    */
+    MPI_Finalize(); //Finalize the MPI Environment
     return 0;
 }
 
