@@ -32,7 +32,6 @@ class FileHandler{
             }
             else
                 std::cerr << "Unable to persist data to file:" << p_strFilename << std::endl;
-
         }
 
         /*
@@ -111,5 +110,48 @@ class FileHandler{
             }
             
             return bodies;
+        }
+
+        /*
+        * Writes run details to console out
+        */
+        void reportInfo(std::string input_file_path, double tot_time)
+        {
+            std::cout << "Input File: " << input_file_path << "\n";
+            std::cout << "Clock Frequency\n";
+            std::cout << "wtime = " << omp_get_wtime() << "\n";
+            std::cout << "Number of processors = " << omp_get_num_procs() << "\n";
+            std::cout << "Number of threads = " << omp_get_max_threads() << "\n";
+            std::cout << "wtick(Clock Frequency) = " << omp_get_wtick() << "\n";
+            std::cout << "1/wtick = " << 1.0/omp_get_wtick() << "\n\n";
+            std::cout << "Total Elapsed Time: " << tot_time << " seconds\n--------------------------------------\n";
+        }
+
+        /*
+        * Write run details to file
+        */
+        void reportInfoToFile(std::string input_file_path, double tot_time)
+        {
+            /*
+            Opens input file at specified path 
+            (Note: C++11 file.open() requires an input parameter of type char) 
+            */
+            std::string strFilename = "../CPS3227_Assignment/report/report.txt";
+            std::ofstream output(strFilename.c_str(), std::ios_base::app); //Open File in Append mode
+            if (output.is_open())
+            {	
+                output << "Input File: " << input_file_path << "\n";
+                output << "Clock Frequency\n";
+                output << "wtime = " << omp_get_wtime() << "\n";
+                output << "Number of processors = " << omp_get_num_procs() << "\n";
+                output << "Number of threads = " << omp_get_max_threads() << "\n";
+                output << "wtick(Clock Frequency) = " << omp_get_wtick() << "\n";
+                output << "1/wtick = " << 1.0/omp_get_wtick() << "\n\n";
+                output << "Total Elapsed Time: " << tot_time << " seconds\n--------------------------------------\n";
+                
+                output.close();
+            }
+            else
+                std::cerr << "Unable to persist data to file:" << strFilename << std::endl;
         }
 };

@@ -1,5 +1,5 @@
 /*
-Main class, which contains all the logic
+Main class, which contains all the logic and respective references
 */
 // Library Imports
 #include <omp.h>
@@ -20,7 +20,8 @@ Method Definitions
 */
 void PersistPositions(const std::string, std::vector<Particle>, bool);
 std::vector<Particle> read_from_file(std::string);
-void getInfo(void);
+void reportInfo(std::string, double);
+void reportInfoToFile(std::string, double);
 double captureTimestamp(void);
 /*
 Main Routine
@@ -42,8 +43,7 @@ int main(int argc, char **argv)
     /*
     Main Logic
     */
-    getInfo(); //RLogs particular data for this specific run, concerning the system
-
+    
     // Check if input file has been specified. Otherwise default to input_64.txt
     if(argc > 1)
     {
@@ -65,28 +65,19 @@ int main(int argc, char **argv)
 		p.ComputeForces(bodies, gTerm);
 		p.MoveBodies(bodies, deltaT);
 		
-		fileOutput.str(std::string());
-		fileOutput << output_file_name << iteration << ".txt";
-		fh.PersistPositions(fileOutput.str(), bodies, enable_output);
+        fileOutput.str(std::string());
+        fileOutput << output_file_name << iteration << ".txt";
+        fh.PersistPositions(fileOutput.str(), bodies, enable_output);
 	}
 
     // Take Final Time Measurement
     end_time_stamp = captureTimestamp();
-    std::cout << "Total Elapsed Time: " << end_time_stamp - start_time_stamp << " seconds\n";
+    fh.reportInfo(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run.
+    fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run. Saves to File.
     return 0;
 }
 
 double captureTimestamp(void)
 {
     return omp_get_wtime();
-}
-
-void getInfo(void)
-{
-    std::cout << "Clock Frequency\n";
-    std::cout << "wtime = " << omp_get_wtime() << "\n";
-    std::cout << "Number of processors = " << omp_get_num_procs() << "\n";
-    std::cout << "Number of threads = " << omp_get_max_threads() << "\n";
-    std::cout << "wtick(Clock Frequency) = " << omp_get_wtick() << "\n";
-    std::cout << "1/wtick = " << 1.0/omp_get_wtick() << "\n\n";
 }

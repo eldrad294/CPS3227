@@ -68,8 +68,7 @@ class Particle
         void MoveBodies(std::vector<Particle> &p_bodies, float p_deltaT)
         //void MoveBodies(std::vector<Particle> p_bodies, float p_deltaT)
         {
-            // Sequential Method
-            #pragma omp parallel for default(none) shared(p_bodies,p_deltaT)
+            #pragma omp parallel for default(none) shared(p_bodies, p_deltaT)
             for (size_t j = 0; j < p_bodies.size(); ++j)
             {
                 p_bodies[j].Position += p_bodies[j].Velocity * p_deltaT;
