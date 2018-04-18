@@ -48,7 +48,7 @@ class FileHandler{
 
         Returns a vector list with all loaded particles from file
         */
-        std::vector<Particle> read_from_file(std::string file_path)
+        std::vector<Particle> read_from_file(std::string file_path, std::string enable_output)
         {
             std::string line;
             std::string temp_line;
@@ -102,7 +102,10 @@ class FileHandler{
                     // std::cout << "--------------\n";
                 }
                 myfile.close();
-                std::cout << "Files Loaded Successfully\n";
+                if (enable_output == "output_on")
+                {
+                    std::cout << "Files Loaded Successfully\n";
+                }
             }else
             {
                 std::cerr << "Unable to open file at location: [" << file_path << "]\n";
@@ -115,14 +118,13 @@ class FileHandler{
         /*
         * Writes run details to console out
         */
-        void reportInfo(std::string input_file_path, double tot_time)
+        void reportInfo_openmp(std::string input_file_path, double tot_time)
         {
             std::cout << "Input File: " << input_file_path << "\n";
-            std::cout << "Clock Frequency\n";
             std::cout << "wtime = " << omp_get_wtime() << "\n";
             std::cout << "Number of processors = " << omp_get_num_procs() << "\n";
             std::cout << "Number of threads = " << omp_get_max_threads() << "\n";
-            std::cout << "wtick(Clock Frequency) = " << omp_get_wtick() << "\n";
+            std::cout << "Clock Frequency = " << omp_get_wtick() << "\n";
             std::cout << "1/wtick = " << 1.0/omp_get_wtick() << "\n\n";
             std::cout << "Total Elapsed Time: " << tot_time << " seconds\n--------------------------------------\n";
         }
@@ -136,16 +138,15 @@ class FileHandler{
             Opens input file at specified path 
             (Note: C++11 file.open() requires an input parameter of type char) 
             */
-            std::string strFilename = "CPS3227_Assignment/report/report.txt";
+            std::string strFilename = "../CPS3227_Assignment/report/report.txt";
             std::ofstream output(strFilename.c_str(), std::ios_base::app); //Open File in Append mode
             if (output.is_open())
             {	
                 output << "Input File: " << input_file_path << "\n";
-                output << "Clock Frequency\n";
                 output << "wtime = " << omp_get_wtime() << "\n";
                 output << "Number of processors = " << omp_get_num_procs() << "\n";
                 output << "Number of threads = " << omp_get_max_threads() << "\n";
-                output << "wtick(Clock Frequency) = " << omp_get_wtick() << "\n";
+                output << "Clock Frequency = " << omp_get_wtick() << "\n";
                 output << "1/wtick = " << 1.0/omp_get_wtick() << "\n\n";
                 output << "Total Elapsed Time: " << tot_time << " seconds\n--------------------------------------\n";
                 

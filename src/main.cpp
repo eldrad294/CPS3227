@@ -3,7 +3,7 @@ Main class, which contains all the logic and respective references
 */
 // Library Imports
 #include <omp.h>
-//#include <mpi.h>
+#include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -20,8 +20,8 @@ Constant Declarations
 Method Definitions
 */
 void PersistPositions(const std::string, std::vector<Particle>, bool);
-std::vector<Particle> read_from_file(std::string);
-void reportInfo(std::string, double);
+std::vector<Particle> read_from_file(std::string, std::string enable_output);
+void reportInfo_openmp(std::string, double);
 void reportInfoToFile(std::string, double);
 double captureTimestamp(void);
 /*
@@ -45,11 +45,11 @@ int main(int argc, char **argv)
     /*
     Initialize the MPI environment
     */
-    //MPI_Init(NULL, NULL);
-    //int world_size;
-    //MPI_Comm_size(MPI_COMM_WORLD), &world_size); //Get the number of processes
-    //int world_rank;
-    //MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
+    MPI_Init(NULL, NULL);
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD), &world_size); //Get the number of processes
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
 
     /*
     Main Logic
@@ -65,10 +65,14 @@ int main(int argc, char **argv)
     }
 
     // Opening Input File
-    bodies = fh.read_from_file(input_file_path);
+    bodies = fh.read_from_file(input_file_path, enable_output);
 
-    // Take Initial Time Measurement
-    start_time_stamp = captureTimestamp();
+    // Start recording time from master node only
+    if (world_rank == 0)
+    {
+        // Take Initial Time Measurement
+        start_time_stamp = captureTimestamp();
+    }
 
     for (int iteration = 0; iteration < maxIteration; ++iteration)
 	{
@@ -80,15 +84,19 @@ int main(int argc, char **argv)
         fh.PersistPositions(fileOutput.str(), bodies, enable_output);
 	}
 
-    // Take Final Time Measurement
-    end_time_stamp = captureTimestamp();
-    fh.reportInfo(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run.
-    //fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run. Saves to File.
-    
+    // Finish recording time from master node only
+    if (world_rank == 0)
+    {
+        // Take Final Time Measurement
+        end_time_stamp = captureTimestamp();
+
+        fh.reportInfo_openmp(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run.
+        //fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run. Saves to File.
+    }
     /*
     Destruct MPI environment
     */
-    //MPI_Finalize(); //Finalize the MPI Environment
+    MPI_Finalize(); //Finalize the MPI Environment
     return 0;
 }
 

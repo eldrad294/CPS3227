@@ -29,7 +29,6 @@ class Particle
             Vector2 direction, force, acceleration;
             float distance;
 
-            //#pragma omp parallel for default(none) private(force,acceleration,direction,distance) shared(p_bodies,p_gravitationalTerm)
             #pragma omp parallel for default(none) private(force, acceleration) shared(p_bodies,p_gravitationalTerm)
             for (size_t j = 0; j < p_bodies.size(); ++j)
             {
