@@ -136,7 +136,7 @@ class FileHandler{
             Opens input file at specified path 
             (Note: C++11 file.open() requires an input parameter of type char) 
             */
-            std::string strFilename = "../CPS3227_Assignment/report/report.txt";
+            std::string strFilename = "CPS3227_Assignment/report/report.txt";
             std::ofstream output(strFilename.c_str(), std::ios_base::app); //Open File in Append mode
             if (output.is_open())
             {	

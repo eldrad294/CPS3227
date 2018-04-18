@@ -3,7 +3,7 @@ Main class, which contains all the logic and respective references
 */
 // Library Imports
 #include <omp.h>
-#include <mpi.h>
+//#include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -39,17 +39,17 @@ int main(int argc, char **argv)
     Particle p;
     std::stringstream fileOutput;
     std::vector<Particle> bodies;
-    std::string input_file_path = "../CPS3227_Assignment/input/input_64.txt";    
-    std::string output_file_name = "../CPS3227_Assignment/output/nbody_";
+    std::string input_file_path = "CPS3227_Assignment/input/input_64.txt";    
+    std::string output_file_name = "CPS3227_Assignment/output/nbody_";
     
     /*
     Initialize the MPI environment
     */
-    MPI_Init(NULL, NULL);
-    int world_size;
-    MPI_Comm_size(MPI_COMM_WORLD), &world_size); //Get the number of processes
-    int world_rank;
-    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
+    //MPI_Init(NULL, NULL);
+    //int world_size;
+    //MPI_Comm_size(MPI_COMM_WORLD), &world_size); //Get the number of processes
+    //int world_rank;
+    //MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
 
     /*
     Main Logic
@@ -83,12 +83,12 @@ int main(int argc, char **argv)
     // Take Final Time Measurement
     end_time_stamp = captureTimestamp();
     fh.reportInfo(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run.
-    fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run. Saves to File.
+    //fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run. Saves to File.
     
     /*
     Destruct MPI environment
     */
-    MPI_Finalize(); //Finalize the MPI Environment
+    //MPI_Finalize(); //Finalize the MPI Environment
     return 0;
 }
 
