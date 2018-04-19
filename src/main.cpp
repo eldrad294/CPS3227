@@ -21,7 +21,7 @@ Method Definitions
 */
 void PersistPositions(const std::string, std::vector<Particle>, bool);
 std::vector<Particle> read_from_file(std::string, std::string enable_output);
-void reportInfo_openmp(std::string, double);
+void reportInfo(std::string, double);
 void reportInfoToFile(std::string, double);
 double captureTimestamp(void);
 /*
@@ -52,6 +52,13 @@ int main(int argc, char **argv)
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
 
     /*
+    Defining MPI datatype - *TO BE REVISED*
+    */
+    MPI_Datatype dt_point;
+    MPI_Type_vector(16384, MPI_FLOAT, &dt_point);
+    MPI_Type_commit($dt_point);
+
+    /*
     Main Logic
     */
     // Check if input file has been specified. Otherwise default to input_64.txt
@@ -64,24 +71,34 @@ int main(int argc, char **argv)
         input_file_path = argv[1];
     }
 
-    // Opening Input File
-    bodies = fh.read_from_file(input_file_path, enable_output);
-
-    // Start recording time from master node only
+    // Read input files and start recording time from master node only
     if (world_rank == 0)
     {
+        // Opening Input File
+        bodies = fh.read_from_file(input_file_path, enable_output);
+
         // Take Initial Time Measurement
         start_time_stamp = captureTimestamp();
     }
 
     for (int iteration = 0; iteration < maxIteration; ++iteration)
 	{
-		p.ComputeForces(bodies, gTerm);
-		p.MoveBodies(bodies, deltaT);
+        //Broadcast bodies for Particle Force Computation
+        MPI_Bcast(bodies,bodies.size(),dt_point,0,MPI_COMM_WORLD);
+		p.ComputeForces(bodies, gTerm, world_rank, world_size);
+
+        //Broadcast bodies for Particle Force Computation
+        MPI_Bcast(bodies,bodies.size(),dt_point,0,MPI_COMM_WORLD);
+		p.MoveBodies(bodies, deltaT, world_rank, world_size);
 		
-        fileOutput.str(std::string());
-        fileOutput << output_file_name << iteration << ".txt";
-        fh.PersistPositions(fileOutput.str(), bodies, enable_output);
+        // Establish Barrier before having the master node save current iteration to disk
+        MPI_Barrier(MPI_COMM_WORLD);
+        if (world_rank == 0)
+        {
+            fileOutput.str(std::string());
+            fileOutput << output_file_name << iteration << ".txt";
+            fh.PersistPositions(fileOutput.str(), bodies, enable_output);
+        }
 	}
 
     // Finish recording time from master node only
@@ -90,7 +107,7 @@ int main(int argc, char **argv)
         // Take Final Time Measurement
         end_time_stamp = captureTimestamp();
 
-        fh.reportInfo_openmp(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run.
+        fh.reportInfo(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run.
         //fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run. Saves to File.
     }
     /*

@@ -24,13 +24,25 @@ class Particle
         /*
         * Compute forces of particles exerted on one another
         */
-        void ComputeForces(std::vector<Particle> &p_bodies, float p_gravitationalTerm)
+        void ComputeForces(std::vector<Particle> &p_bodies, float p_gravitationalTerm, world_rank, world_size)
         {
             Vector2 direction, force, acceleration;
             float distance;
+            int balanced_split, min, max;
 
-            #pragma omp parallel for default(none) private(force, acceleration) shared(p_bodies,p_gravitationalTerm)
-            for (size_t j = 0; j < p_bodies.size(); ++j)
+            // Calculating partition split, and current range of bodies to calculate for current node
+            balanced_split = p_bodies.size() / world_size;
+            min = balanced_split * world_rank;
+            max = min + balanced_split + 1;
+
+            // Cater for uneven partition splits
+            if(world_rank == world_size-1)
+            {
+               max = p_bodies.size();
+            }
+
+            //#pragma omp parallel for default(none) private(force, acceleration) shared(p_bodies,p_gravitationalTerm)
+            for (size_t j = min; j < max; ++j)
             {
                 Particle &p1 = p_bodies[j];
             
@@ -64,11 +76,16 @@ class Particle
         /*
         * Update particle positions
         */
-        void MoveBodies(std::vector<Particle> &p_bodies, float p_deltaT)
+        void MoveBodies(std::vector<Particle> &p_bodies, float p_deltaT, world_rank, world_size)
         //void MoveBodies(std::vector<Particle> p_bodies, float p_deltaT)
         {
+            // Calculating balanced split, and current range of bodies to calculate for current node
+            balanced_split = p_bodies.size() / world_size;
+            min = balanced_split * world_rank;
+            max = min + balanced_split + 1;
+
             #pragma omp parallel for default(none) shared(p_bodies, p_deltaT)
-            for (size_t j = 0; j < p_bodies.size(); ++j)
+            for (size_t j = min; j < max; ++j)
             {
                 p_bodies[j].Position += p_bodies[j].Velocity * p_deltaT;
             }

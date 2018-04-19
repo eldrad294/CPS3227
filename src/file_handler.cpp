@@ -118,7 +118,7 @@ class FileHandler{
         /*
         * Writes run details to console out
         */
-        void reportInfo_openmp(std::string input_file_path, double tot_time)
+        void reportInfo(std::string input_file_path, double tot_time)
         {
             std::cout << "Input File: " << input_file_path << "\n";
             std::cout << "wtime = " << omp_get_wtime() << "\n";
