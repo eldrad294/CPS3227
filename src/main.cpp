@@ -52,13 +52,6 @@ int main(int argc, char **argv)
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
 
     /*
-    Defining MPI datatype - *TO BE REVISED*
-    */
-    MPI_Datatype dt_point;
-    MPI_Type_vector(16384, MPI_FLOAT, &dt_point);
-    MPI_Type_commit($dt_point);
-
-    /*
     Main Logic
     */
     // Check if input file has been specified. Otherwise default to input_64.txt
@@ -81,21 +74,46 @@ int main(int argc, char **argv)
         start_time_stamp = captureTimestamp();
     }
 
+    /*
+    Defining MPI datatype - *TO BE REVISED*
+    */
+    // Defining (self-defined) MPI position and velocity vectors
+    MPI_Datatype position_obj;
+    MPI_Type_vector(2, MPI_FLOAT, &position_obj);
+    MPI_Type_commit(&position_obj);
+    MPI_Datatype velocity_obj;
+    MPI_Type_vector(2, MPI_FLOAT, &velocity_obj);
+    MPI_Type_commit(&velocity_obj);
+
+    // Defining (self-defined) MPI particle datatype
+    int num_members = 3;
+    int lengths[num_members] = {2,2,1};
+    MPI_Aint offsets[num_members] = {offsetof(Particle,Position),offsetof(Particle,Velocity),offsetof(Particle,Mass)};
+    MPI_Datatype types[num_members] = {position_obj, velocity_obj, MPI_FLOAT};
+    MPI_Datatype particle_type;
+    MPI_Type_struct(num_members,lengths,offsets,types,&particle_type);
+    MPI_Type_commit(&particle_type);
+
+    // Defining (self-defined) MPI body vector list of particles
+    MPI_Datatype vector_obj;
+    MPI_Type_vector(bodies.size(), &particle, &vector_obj);
+    MPI_Type_commit(&vector_obj);
+
     for (int iteration = 0; iteration < maxIteration; ++iteration)
 	{
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(bodies,bodies.size(),dt_point,0,MPI_COMM_WORLD);
+        MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
 		//Return sub vector of particles
-        std::vector<Particle> &local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
+        std::vector<Particle> local_bodies = p.ComputeForces(&bodies, gTerm, world_rank, world_size);
         //Gather all bodies into head node
-        MPI_Gather(&local_bodies, local_bodies.size(), dt_point, &p_bodies, p_bodies.size(), dt_point, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
 
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(bodies,bodies.size(),dt_point,0,MPI_COMM_WORLD);
+        MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
         //Return sub vector of particles
-		std::vector<Particle> &local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
+		std::vector<Particle> local_bodies = p.MoveBodies(&bodies, deltaT, world_rank, world_size);
 		//Gather all bodies into head node
-        MPI_Gather(&local_bodies, local_bodies.size(), dt_point, &p_bodies, p_bodies.size(), dt_point, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
            
         if (world_rank == 0)
         {
