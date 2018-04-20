@@ -85,14 +85,18 @@ int main(int argc, char **argv)
 	{
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(bodies,bodies.size(),dt_point,0,MPI_COMM_WORLD);
-		p.ComputeForces(bodies, gTerm, world_rank, world_size);
+		//Return sub vector of particles
+        std::vector<Particle> &local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
+        //Gather all bodies into head node
+        MPI_Gather(&local_bodies, local_bodies.size(), dt_point, &p_bodies, p_bodies.size(), dt_point, 0, MPI_COMM_WORLD);
 
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(bodies,bodies.size(),dt_point,0,MPI_COMM_WORLD);
-		p.MoveBodies(bodies, deltaT, world_rank, world_size);
-		
-        // Establish Barrier before having the master node save current iteration to disk
-        MPI_Barrier(MPI_COMM_WORLD);
+        //Return sub vector of particles
+		std::vector<Particle> &local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
+		//Gather all bodies into head node
+        MPI_Gather(&local_bodies, local_bodies.size(), dt_point, &p_bodies, p_bodies.size(), dt_point, 0, MPI_COMM_WORLD);
+           
         if (world_rank == 0)
         {
             fileOutput.str(std::string());

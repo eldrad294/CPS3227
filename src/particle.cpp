@@ -24,7 +24,7 @@ class Particle
         /*
         * Compute forces of particles exerted on one another
         */
-        void ComputeForces(std::vector<Particle> &p_bodies, float p_gravitationalTerm, world_rank, world_size)
+        std::vector<Particle> ComputeForces(std::vector<Particle> &p_bodies, float p_gravitationalTerm, int world_rank, int world_size)
         {
             Vector2 direction, force, acceleration;
             float distance;
@@ -41,17 +41,22 @@ class Particle
                max = p_bodies.size();
             }
 
+            // Creating local vector of bodies upon which to perform particle lookup
+            std:vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
+
             //#pragma omp parallel for default(none) private(force, acceleration) shared(p_bodies,p_gravitationalTerm)
-            for (size_t j = min; j < max; ++j)
+            for (size_t j = 0; j < local_bodies.size(); ++j)
             {
-                Particle &p1 = p_bodies[j];
+                min++;
+                Particle &p1 = p_bodies[min];
             
                 force = 0.f, acceleration = 0.f;
+                
             
-                #pragma omp parallel for default(none) private(direction,distance,force) shared(p_bodies,j,p1)
+                #pragma omp parallel for default(none) private(direction,distance,force) shared(p_bodies,j,min,p1)
                 for (size_t k = 0; k < p_bodies.size(); ++k)
                 {
-                    if (k == j) continue;
+                    if (k == min) continue;
                 
                     Particle &p2 = p_bodies[k];
                     
@@ -71,24 +76,38 @@ class Particle
                 // Integrate velocity (m/s)
                 p1.Velocity += acceleration;
             }
+            return &local_bodies;
         }
 
         /*
         * Update particle positions
         */
-        void MoveBodies(std::vector<Particle> &p_bodies, float p_deltaT, world_rank, world_size)
+        std::vector<Particle> MoveBodies(std::vector<Particle> &p_bodies, float p_deltaT, int world_rank, int world_size)
         //void MoveBodies(std::vector<Particle> p_bodies, float p_deltaT)
         {
+            int balanced_split, min, max;
+
             // Calculating balanced split, and current range of bodies to calculate for current node
             balanced_split = p_bodies.size() / world_size;
             min = balanced_split * world_rank;
             max = min + balanced_split + 1;
 
-            #pragma omp parallel for default(none) shared(p_bodies, p_deltaT)
-            for (size_t j = min; j < max; ++j)
+            // Cater for uneven partition splits
+            if(world_rank == world_size-1)
             {
-                p_bodies[j].Position += p_bodies[j].Velocity * p_deltaT;
+               max = p_bodies.size();
             }
+
+            // Creating local vector of bodies upon which to perform particle lookup
+            std:vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
+
+            #pragma omp parallel for default(none) shared(p_bodies, p_deltaT)
+            for (size_t j = 0; j < local_bodies.size(); ++j)
+            {
+                local_bodies[j].Position += local_bodies[j].Velocity * p_deltaT;
+            }
+ 
+            return &local_bodies;
             // // Parallel Method
             // std::vector<Particle> temp_list;
             // #pragma omp parallel default(none) shared(p_bodies, p_deltaT) private(temp_list)
