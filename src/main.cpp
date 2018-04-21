@@ -80,41 +80,41 @@ int main(int argc, char **argv)
     */
     // Defining (self-defined) MPI position and velocity vectors
     MPI_Datatype position_obj;
-    MPI_Type_vector(2, MPI_FLOAT, &position_obj);
+    MPI_Type_vector(2,2,2,MPI_FLOAT, &position_obj);
     MPI_Type_commit(&position_obj);
     MPI_Datatype velocity_obj;
-    MPI_Type_vector(2, MPI_FLOAT, &velocity_obj);
+    MPI_Type_vector(2,2,2,MPI_FLOAT, &velocity_obj);
     MPI_Type_commit(&velocity_obj);
 
     // Defining (self-defined) MPI particle datatype
     int num_members = 3;
-    int lengths[num_members] = {2,2,1};
-    MPI_Aint offsets[num_members] = {offsetof(Particle,Position),offsetof(Particle,Velocity),offsetof(Particle,Mass)};
-    MPI_Datatype types[num_members] = {position_obj, velocity_obj, MPI_FLOAT};
+    int lengths[] = {2,2,1};
+    MPI_Aint offsets[] = {offsetof(Particle,Position),offsetof(Particle,Velocity),offsetof(Particle,Mass)};
+    MPI_Datatype types[] = {position_obj, velocity_obj, MPI_FLOAT};
     MPI_Datatype particle_type;
-    MPI_Type_struct(num_members,lengths,offsets,types,&particle_type);
+    MPI_Type_create_struct(num_members,lengths,offsets,types,&particle_type);
     MPI_Type_commit(&particle_type);
 
     // Defining (self-defined) MPI body vector list of particles
     MPI_Datatype vector_obj;
-    MPI_Type_vector(bodies.size(), particle, &vector_obj);
+    MPI_Type_vector(bodies.size(),2,2, particle_type, &vector_obj);
     MPI_Type_commit(&vector_obj);
 
     for (int iteration = 0; iteration < maxIteration; ++iteration)
 	{
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
+        MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
 		//Return sub vector of particles
         local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
         //Gather all bodies into head node
-        MPI_Gather(local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
 
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
+        MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
         //Return sub vector of particles
 		local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
 		//Gather all bodies into head node
-        MPI_Gather(local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
            
         if (world_rank == 0)
         {

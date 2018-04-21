@@ -54,7 +54,7 @@ class Particle
                 force = 0.f, acceleration = 0.f;
                 
             
-                #pragma omp parallel for default(none) private(direction,distance,force) shared(p_bodies,j,min,p1)
+                #pragma omp parallel for default(none) private(direction,distance,force) shared(local_bodies, p_bodies,j,min,p1)
                 for (size_t k = 0; k < p_bodies.size(); ++k)
                 {
                     if (k == min) continue;
@@ -102,7 +102,7 @@ class Particle
             // Creating local vector of bodies upon which to perform particle lookup
             std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
 
-            #pragma omp parallel for default(none) shared(p_bodies, p_deltaT)
+            #pragma omp parallel for default(none) shared(local_bodies, p_bodies, p_deltaT)
             for (size_t j = 0; j < local_bodies.size(); ++j)
             {
                 local_bodies[j].Position += local_bodies[j].Velocity * p_deltaT;
