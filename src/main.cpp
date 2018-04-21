@@ -80,10 +80,10 @@ int main(int argc, char **argv)
     */
     // Defining (self-defined) MPI position and velocity vectors
     MPI_Datatype position_obj;
-    MPI_Type_vector(2,2,2,MPI_FLOAT, &position_obj);
+    MPI_Type_vector(1,1,1,MPI_FLOAT, &position_obj);
     MPI_Type_commit(&position_obj);
     MPI_Datatype velocity_obj;
-    MPI_Type_vector(2,2,2,MPI_FLOAT, &velocity_obj);
+    MPI_Type_vector(1,1,1,MPI_FLOAT, &velocity_obj);
     MPI_Type_commit(&velocity_obj);
 
     // Defining (self-defined) MPI particle datatype
@@ -97,7 +97,7 @@ int main(int argc, char **argv)
 
     // Defining (self-defined) MPI body vector list of particles
     MPI_Datatype vector_obj;
-    MPI_Type_vector(bodies.size(),2,2, particle_type, &vector_obj);
+    MPI_Type_vector(bodies.size(),1,1, particle_type, &vector_obj);
     MPI_Type_commit(&vector_obj);
 
     for (int iteration = 0; iteration < maxIteration; ++iteration)
@@ -136,6 +136,10 @@ int main(int argc, char **argv)
     /*
     Destruct MPI environment
     */
+    MPI_Type_free(&position_obj);
+    MPI_Type_free(&velocity_obj);
+    MPI_Type_free(&particle_type);
+    MPI_Type_free(&vector_obj);
     MPI_Finalize(); //Finalize the MPI Environment
     return 0;
 }
