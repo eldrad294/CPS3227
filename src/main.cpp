@@ -3,7 +3,7 @@ Main class, which contains all the logic and respective references
 */
 // Library Imports
 #include <omp.h>
-//#include <mpi.h>
+#include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
     */
     MPI_Init(NULL, NULL);
     int world_size;
-    MPI_Comm_size(MPI_COMM_WORLD), &world_size); //Get the number of processes
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size); //Get the number of processes
     int world_rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
 
@@ -97,24 +97,24 @@ int main(int argc, char **argv)
 
     // Defining (self-defined) MPI body vector list of particles
     MPI_Datatype vector_obj;
-    MPI_Type_vector(bodies.size(), &particle, &vector_obj);
+    MPI_Type_vector(bodies.size(), particle, &vector_obj);
     MPI_Type_commit(&vector_obj);
 
     for (int iteration = 0; iteration < maxIteration; ++iteration)
 	{
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
+        MPI_Bcast(bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
 		//Return sub vector of particles
         local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
         //Gather all bodies into head node
-        MPI_Gather(&local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
+        MPI_Gather(local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
 
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
+        MPI_Bcast(bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
         //Return sub vector of particles
 		local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
 		//Gather all bodies into head node
-        MPI_Gather(&local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
+        MPI_Gather(local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
            
         if (world_rank == 0)
         {
