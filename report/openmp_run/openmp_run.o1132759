@@ -505,3 +505,157 @@ wtick(Clock Frequency) = 0.000999848
 
 Total Elapsed Time: 39560.9 seconds
 --------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.78341e+06
+Number of processors = 12
+Number of threads = 1
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 39372.5 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.82276e+06
+Number of processors = 12
+Number of threads = 1
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 39352.8 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.84249e+06
+Number of processors = 12
+Number of threads = 2
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 19727.4 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.86222e+06
+Number of processors = 12
+Number of threads = 2
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 19735.7 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.88195e+06
+Number of processors = 12
+Number of threads = 2
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 19721.8 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.89187e+06
+Number of processors = 12
+Number of threads = 4
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 9920.15 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.9018e+06
+Number of processors = 12
+Number of threads = 4
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 9937.89 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.91176e+06
+Number of processors = 12
+Number of threads = 4
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 9954.48 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.91687e+06
+Number of processors = 12
+Number of threads = 8
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 5107.86 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.92191e+06
+Number of processors = 12
+Number of threads = 8
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 5047.5 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.92698e+06
+Number of processors = 12
+Number of threads = 8
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 5063.76 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.93041e+06
+Number of processors = 12
+Number of threads = 12
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 3433.23 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.93377e+06
+Number of processors = 12
+Number of threads = 12
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 3357.18 seconds
+--------------------------------------
+Files Loaded Successfully
+Input File: CPS3227_Assignment/input/input_16384.txt
+Clock Frequency
+wtime = 1.93713e+06
+Number of processors = 12
+Number of threads = 12
+wtick(Clock Frequency) = 0.000999848
+1/wtick = 1000.15
+
+Total Elapsed Time: 3358.86 seconds
+--------------------------------------
