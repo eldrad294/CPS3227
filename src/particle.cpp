@@ -3,6 +3,7 @@
 #define _MYHEADER_H_
 // Library Imports
 #include <algorithm>
+#include <vector>
 #include "vector2.h"
 
 class Particle
@@ -28,7 +29,7 @@ class Particle
         {
             Vector2 direction, force, acceleration;
             float distance;
-            int balanced_split, min, max;
+            unsigned balanced_split, min, max;
 
             // Calculating partition split, and current range of bodies to calculate for current node
             balanced_split = p_bodies.size() / world_size;
@@ -42,7 +43,7 @@ class Particle
             }
 
             // Creating local vector of bodies upon which to perform particle lookup
-            std:vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
+            std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
 
             //#pragma omp parallel for default(none) private(force, acceleration) shared(p_bodies,p_gravitationalTerm)
             for (size_t j = 0; j < local_bodies.size(); ++j)
@@ -76,7 +77,7 @@ class Particle
                 // Integrate velocity (m/s)
                 p1.Velocity += acceleration;
             }
-            return &local_bodies;
+            return local_bodies;
         }
 
         /*
@@ -85,7 +86,7 @@ class Particle
         std::vector<Particle> MoveBodies(std::vector<Particle> &p_bodies, float p_deltaT, int world_rank, int world_size)
         //void MoveBodies(std::vector<Particle> p_bodies, float p_deltaT)
         {
-            int balanced_split, min, max;
+            unsigned balanced_split, min, max;
 
             // Calculating balanced split, and current range of bodies to calculate for current node
             balanced_split = p_bodies.size() / world_size;
@@ -99,7 +100,7 @@ class Particle
             }
 
             // Creating local vector of bodies upon which to perform particle lookup
-            std:vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
+            std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
 
             #pragma omp parallel for default(none) shared(p_bodies, p_deltaT)
             for (size_t j = 0; j < local_bodies.size(); ++j)
@@ -107,7 +108,7 @@ class Particle
                 local_bodies[j].Position += local_bodies[j].Velocity * p_deltaT;
             }
  
-            return &local_bodies;
+            return local_bodies;
             // // Parallel Method
             // std::vector<Particle> temp_list;
             // #pragma omp parallel default(none) shared(p_bodies, p_deltaT) private(temp_list)

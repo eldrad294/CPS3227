@@ -3,7 +3,7 @@ Main class, which contains all the logic and respective references
 */
 // Library Imports
 #include <omp.h>
-#include <mpi.h>
+//#include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -39,6 +39,7 @@ int main(int argc, char **argv)
     Particle p;
     std::stringstream fileOutput;
     std::vector<Particle> bodies;
+    std::vector<Particle> local_bodies;
     std::string input_file_path = "CPS3227_Assignment/input/input_64.txt";    
     std::string output_file_name = "CPS3227_Assignment/output/nbody_";
     
@@ -104,14 +105,14 @@ int main(int argc, char **argv)
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
 		//Return sub vector of particles
-        std::vector<Particle> local_bodies = p.ComputeForces(&bodies, gTerm, world_rank, world_size);
+        local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
         //Gather all bodies into head node
         MPI_Gather(&local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
 
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
         //Return sub vector of particles
-		std::vector<Particle> local_bodies = p.MoveBodies(&bodies, deltaT, world_rank, world_size);
+		local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
 		//Gather all bodies into head node
         MPI_Gather(&local_bodies, local_bodies.size(), vector_obj, &bodies, bodies.size(), vector_obj, 0, MPI_COMM_WORLD);
            
