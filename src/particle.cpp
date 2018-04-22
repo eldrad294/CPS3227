@@ -25,7 +25,8 @@ class Particle
         /*
         * Compute forces of particles exerted on one another
         */
-        std::vector<Particle> ComputeForces(std::vector<Particle> &p_bodies, float p_gravitationalTerm, int world_rank, int world_size)
+        std::vector<Particle> ComputeForces(std::vector<Particle> &p_bodies, float p_gravitationalTerm, int world_rank, int 
+world_size)
         {
             Vector2 direction, force, acceleration;
             float distance;
