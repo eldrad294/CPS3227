@@ -42,7 +42,7 @@ int main(int argc, char **argv)
     std::vector<Particle> local_bodies;
     std::string input_file_path = "CPS3227_Assignment/input/input_64.txt";    
     std::string output_file_name = "CPS3227_Assignment/output/nbody_";
-    std::cout << "GS: Debug1\n";    
+        
     /*
     Initialize the MPI environment
     */
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
     MPI_Comm_size(MPI_COMM_WORLD, &world_size); //Get the number of processes
     int world_rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
-    std::cout << "GS: Debug2\n";
+    
     /*
     Main Logic
     */
@@ -65,11 +65,11 @@ int main(int argc, char **argv)
         input_file_path = argv[1];
     }
 
-    std::cout << "GS: Debug3\n";
+    
     // Read input files and start recording time from master node only
     if (world_rank == 0)
     {
-        std::cout << "GS: Debug4\n";
+        
         // Opening Input File
         bodies = fh.read_from_file(input_file_path, enable_output);
 
@@ -80,7 +80,6 @@ int main(int argc, char **argv)
     /*
     Defining MPI datatype - *TO BE REVISED*
     */
-    std::cout << "GS: Debug5\n";
     // Defining (self-defined) MPI position and velocity vectors
     MPI_Datatype position_obj;
     MPI_Type_vector(1,1,1,MPI_FLOAT, &position_obj);
@@ -88,7 +87,7 @@ int main(int argc, char **argv)
     MPI_Datatype velocity_obj;
     MPI_Type_vector(1,1,1,MPI_FLOAT, &velocity_obj);
     MPI_Type_commit(&velocity_obj);
-    std::cout << "GS: Debug6\n";
+   
     // Defining (self-defined) MPI particle datatype
     int num_members = 3;
     int lengths[] = {2,2,1};
@@ -97,24 +96,24 @@ int main(int argc, char **argv)
     MPI_Datatype particle_type;
     MPI_Type_create_struct(num_members,lengths,offsets,types,&particle_type);
     MPI_Type_commit(&particle_type);
-    std::cout << "GS: Debug7\n";
+   
     // Defining (self-defined) MPI body vector list of particles
     MPI_Datatype vector_obj;
     MPI_Type_vector(bodies.size(),1,1, particle_type, &vector_obj);
     MPI_Type_commit(&vector_obj);
-    std::cout << "GS: Debug8\n";
+   
     for (int iteration = 0; iteration < maxIteration; ++iteration)
 	{
-        std::cout << "GS: Debug9\n";
+       
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
 		//Return sub vector of particles
-        std::cout << "GS: Debug10\n";
+       
         local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
+
         //Gather all bodies into head node
-	std::cout << "GS: Debug11\n";
         MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
-        std::cout << "GS: Debug12\n";
+       
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
         //Return sub vector of particles
@@ -124,11 +123,14 @@ int main(int argc, char **argv)
            
         if (world_rank == 0)
         {
+	    std::cout << "Writing to disk... " << bodies.size()  << " " << iteration  << "\n";
             fileOutput.str(std::string());
             fileOutput << output_file_name << iteration << ".txt";
             fh.PersistPositions(fileOutput.str(), bodies, enable_output);
         }
+        std::cout << "End of loop\n";
 	}
+   std:: cout << "Exit Loop\n";
 
     // Finish recording time from master node only
     if (world_rank == 0)
