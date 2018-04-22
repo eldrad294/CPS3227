@@ -39,7 +39,7 @@ int main(int argc, char **argv)
     Particle p;
     std::stringstream fileOutput;
     std::vector<Particle> bodies;
-    std::vector<Particle> *local_bodies;
+    std::vector<Particle> local_bodies;
     std::string input_file_path = "CPS3227_Assignment/input/input_64.txt";    
     std::string output_file_name = "CPS3227_Assignment/output/nbody_";
     std::cout << "GS: Debug1\n";    
@@ -113,14 +113,14 @@ int main(int argc, char **argv)
         local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
         //Gather all bodies into head node
 	std::cout << "GS: Debug11\n";
-        MPI_Gather(&local_bodies, 1, vector_obj, bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
         std::cout << "GS: Debug12\n";
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
         //Return sub vector of particles
 		local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
 		//Gather all bodies into head node
-        MPI_Gather(&local_bodies, 1, vector_obj, bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
            
         if (world_rank == 0)
         {
