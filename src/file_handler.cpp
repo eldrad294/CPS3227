@@ -16,19 +16,23 @@ class FileHandler{
             {
                 std::cout << "Writing to file: " << p_strFilename << std::endl;
             }
-            
+            //std::cout << "Writing to disk...5\n";            
             std::ofstream output(p_strFilename.c_str());
-            
+            //std::cout << "Writing to disk...6\n";
             if (output.is_open())
             {	
+                //std::cout << "Writing to disk...7\n";
                 for (unsigned j = 0; j < p_bodies.size(); j++)
                 {
+                    //std::cout << "Writing to disk...8\n";
                     output << 	p_bodies[j].Mass << ", " <<
                         p_bodies[j].Position.Element[0] << ", " <<
                         p_bodies[j].Position.Element[1] << std::endl;
+                    //std::cout << "Writing to disk...9\n";
                 }
-                
+                //std::cout << "Writing to disk...10\n";
                 output.close();
+                //std::cout << "Writing to disk...11\n";
             }
             else
                 std::cerr << "Unable to persist data to file:" << p_strFilename << std::endl;

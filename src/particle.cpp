@@ -35,7 +35,7 @@ world_size)
             // Calculating partition split, and current range of bodies to calculate for current node
             balanced_split = p_bodies.size() / world_size;
             min = balanced_split * world_rank;
-            max = min + balanced_split + 1;
+            max = min + balanced_split - 1;
 
             // Cater for uneven partition splits
             if(world_rank == world_size-1)
@@ -49,11 +49,11 @@ world_size)
             //#pragma omp parallel for default(none) private(force, acceleration) shared(p_bodies,p_gravitationalTerm)
             for (size_t j = 0; j < local_bodies.size(); ++j)
             {
-                min++;
                 Particle &p1 = p_bodies[min];
             
                 force = 0.f, acceleration = 0.f;
                 
+                min++;   
             
                 #pragma omp parallel for default(none) private(direction,distance,force) shared(local_bodies, p_bodies,j,min,p1)
                 for (size_t k = 0; k < p_bodies.size(); ++k)

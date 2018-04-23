@@ -64,7 +64,6 @@ int main(int argc, char **argv)
     {
         input_file_path = argv[1];
     }
-
     
     // Read input files and start recording time from master node only
     if (world_rank == 0)
@@ -107,8 +106,8 @@ int main(int argc, char **argv)
        
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
-		//Return sub vector of particles
-       
+	
+        //Return sub vector of particles
         local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
 
         //Gather all bodies into head node
@@ -116,21 +115,26 @@ int main(int argc, char **argv)
        
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
+        
         //Return sub vector of particles
-		local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
-		//Gather all bodies into head node
+	local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
+	
+        //Gather all bodies into head node
         MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
            
         if (world_rank == 0)
         {
-	    std::cout << "Writing to disk... " << bodies.size()  << " " << iteration  << "\n";
+	    //std::cout << "Writing to disk...1" << bodies.size()  << " " << iteration  << "\n";
             fileOutput.str(std::string());
+            //std::cout << "Writing to disk...2\n";  
             fileOutput << output_file_name << iteration << ".txt";
+            //std::cout << "Writing to disk...3\n";
             fh.PersistPositions(fileOutput.str(), bodies, enable_output);
+            //std::cout << "Writing to disk...4\n";
         }
-        std::cout << "End of loop\n";
-	}
-   std:: cout << "Exit Loop\n";
+        std::cout << "End of loop.." << iteration << " \n";
+    }
+    std:: cout << "Exit Loop\n";
 
     // Finish recording time from master node only
     if (world_rank == 0)
