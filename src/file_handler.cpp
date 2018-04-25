@@ -15,10 +15,8 @@ class FileHandler{
             if (enable_output == "output_on")
             {
                 std::cout << "Writing to file: " << p_strFilename << std::endl;
-            }
-                        
+            }           
             std::ofstream output(p_strFilename.c_str());
-            
             if (output.is_open())
             {	
                 for (unsigned j = 0; j < p_bodies.size(); j++)

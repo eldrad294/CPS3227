@@ -17,7 +17,7 @@ Constant Declarations
 #define deltaT 0.01f
 #define gTerm 20.f
 /*
-Method Definitions
+Method Prototypes
 */
 void PersistPositions(const std::string, std::vector<Particle>, bool);
 void read_from_file(std::string, std::string enable_output, std::vector<Particle>);
@@ -55,10 +55,27 @@ int main(int argc, char **argv)
     /*
     Defining MPI datatype
     */
+    /*
     MPI_Datatype vector_obj;
     MPI_Type_contiguous(5,MPI_FLOAT,&vector_obj);
     MPI_Type_commit(&vector_obj);
+    */
+    // Defining (self-defined) MPI Position/Velocity datatypes
+    MPI_Datatype position_obj;
+    MPI_Type_vector(2,sizeof(float),sizeof(float),MPI_FLOAT, &position_obj);
+    MPI_Type_commit(&position_obj);
+    MPI_Datatype velocity_obj;
+    MPI_Type_vector(2,sizeof(float),sizeof(float),MPI_FLOAT, &velocity_obj);
+    MPI_Type_commit(&velocity_obj);
 
+    // Defining (self-defined) MPI particle datatype
+    int num_members = 3;
+    int lengths[] = {sizeof(position_obj),sizeof(velocity_obj),sizeof(MPI_FLOAT)};
+    MPI_Aint offsets[] = {offsetof(Particle,Position),offsetof(Particle,Velocity),offsetof(Particle,Mass)};
+    MPI_Datatype types[] = {position_obj, velocity_obj, MPI_FLOAT};
+    MPI_Datatype particle_type;
+    MPI_Type_create_struct(num_members,lengths,offsets,types,&particle_type);
+    MPI_Type_commit(&particle_type);
     /*
     Main Logic
     */
@@ -81,32 +98,29 @@ int main(int argc, char **argv)
         // Take Initial Time Measurement
         start_time_stamp = captureTimestamp();
     }
-       
+
     for (int iteration = 0; iteration < maxIteration; ++iteration)
     {      
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(&bodies,sizeof(bodies),vector_obj,0,MPI_COMM_WORLD);
-       	
+        MPI_Bcast(&bodies,bodies.size(),particle_type,0,MPI_COMM_WORLD);
         //Return sub vector of particles
         p.ComputeForces(bodies, local_bodies, gTerm, world_rank, world_size);
-       
         //Gather all bodies into head node
-        MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
-               
+        MPI_Gather(&local_bodies, local_bodies.size(), particle_type, &bodies, bodies.size(), particle_type, 0, MPI_COMM_WORLD);
+      
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(&bodies,sizeof(bodies),vector_obj,0,MPI_COMM_WORLD);
-                
+        MPI_Bcast(&bodies,bodies.size(),particle_type,0,MPI_COMM_WORLD);
         //Return sub vector of particles
-	    p.MoveBodies(bodies, local_bodies, deltaT, world_rank, world_size);
-        	
+	    p.MoveBodies(bodies, local_bodies, deltaT, world_rank, world_size);	
         //Gather all bodies into head node
-        MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1,  vector_obj, 0, MPI_COMM_WORLD);
-        
+        MPI_Gather(&local_bodies, local_bodies.size(), particle_type, &bodies, bodies.size(),  particle_type, 0, MPI_COMM_WORLD);
+
         if (world_rank == 0)
         {
-	    fileOutput.str(std::string());
+	        fileOutput.str(std::string());
             fileOutput << output_file_name << iteration << ".txt";
             fh.PersistPositions(fileOutput.str(), bodies, enable_output);
+            std::cout << iteration << "End of Loop\n";
         }
     }
     
@@ -123,7 +137,9 @@ int main(int argc, char **argv)
     /*
     Destruct MPI environment
     */
-    MPI_Type_free(&vector_obj);
+    MPI_Type_free(&position_obj);
+    MPI_Type_free(&velocity_obj);
+    MPI_Type_free(&particle_type);
     MPI_Finalize(); //Finalize the MPI Environment
     
     return 0;
