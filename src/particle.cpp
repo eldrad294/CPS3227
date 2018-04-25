@@ -25,8 +25,7 @@ class Particle
         /*
         * Compute forces of particles exerted on one another
         */
-        void ComputeForces(std::vector<Particle> &p_bodies,std::vector<Particle> &p_localbodies, float p_gravitationalTerm, int world_rank, int 
-world_size)
+        void ComputeForces(std::vector<Particle> &p_bodies,std::vector<Particle> &p_localbodies, float p_gravitationalTerm, int world_rank, int world_size)
         {
             Vector2 direction, force, acceleration;
             float distance;
@@ -44,7 +43,7 @@ world_size)
             }
 
             // Creating local vector of bodies upon which to perform particle lookup
-            std::vector<Particle> &local_bodies(p_bodies[min], p_bodies[max]);
+            std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
             p_localbodies = local_bodies;
 
             #pragma omp parallel for default(none) private(force, acceleration) shared(p_localbodies, p_bodies,p_gravitationalTerm)
@@ -99,7 +98,7 @@ world_size)
             }
 
             // Creating local vector of bodies upon which to perform particle lookup
-            std::vector<Particle> &local_bodies(p_bodies[min], p_bodies[max]);
+            std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
             p_localbodies = local_bodies;
 
             #pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
