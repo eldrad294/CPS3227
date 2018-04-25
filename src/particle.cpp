@@ -46,7 +46,7 @@ world_size)
             // Creating local vector of bodies upon which to perform particle lookup
             std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
 
-            //#pragma omp parallel for default(none) private(force, acceleration) shared(p_bodies,p_gravitationalTerm)
+            #pragma omp parallel for default(none) private(force, acceleration) shared(local_bodies, p_bodies,p_gravitationalTerm,min)
             for (size_t j = 0; j < local_bodies.size(); ++j)
             {
                 Particle &p1 = p_bodies[min];

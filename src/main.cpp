@@ -51,7 +51,14 @@ int main(int argc, char **argv)
     MPI_Comm_size(MPI_COMM_WORLD, &world_size); //Get the number of processes
     int world_rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
-    
+
+    /*
+    Defining MPI datatype
+    */
+    MPI_Datatype vector_obj;
+    MPI_Type_contiguous(5,MPI_FLOAT,&vector_obj);
+    MPI_Type_commit(&vector_obj);
+
     /*
     Main Logic
     */
@@ -67,75 +74,42 @@ int main(int argc, char **argv)
     
     // Read input files and start recording time from master node only
     if (world_rank == 0)
-    {
-        
+    {   
         // Opening Input File
         bodies = fh.read_from_file(input_file_path, enable_output);
 
         // Take Initial Time Measurement
         start_time_stamp = captureTimestamp();
     }
-
-    /*
-    Defining MPI datatype - *TO BE REVISED*
-    */
-    // Defining (self-defined) MPI position and velocity vectors
-    MPI_Datatype position_obj;
-    MPI_Type_vector(1,1,1,MPI_FLOAT, &position_obj);
-    MPI_Type_commit(&position_obj);
-    MPI_Datatype velocity_obj;
-    MPI_Type_vector(1,1,1,MPI_FLOAT, &velocity_obj);
-    MPI_Type_commit(&velocity_obj);
-   
-    // Defining (self-defined) MPI particle datatype
-    int num_members = 3;
-    int lengths[] = {2,2,1};
-    MPI_Aint offsets[] = {offsetof(Particle,Position),offsetof(Particle,Velocity),offsetof(Particle,Mass)};
-    MPI_Datatype types[] = {position_obj, velocity_obj, MPI_FLOAT};
-    MPI_Datatype particle_type;
-    MPI_Type_create_struct(num_members,lengths,offsets,types,&particle_type);
-    MPI_Type_commit(&particle_type);
-   
-    // Defining (self-defined) MPI body vector list of particles
-    MPI_Datatype vector_obj;
-    MPI_Type_vector(bodies.size(),1,1, particle_type, &vector_obj);
-    MPI_Type_commit(&vector_obj);
-   
-    for (int iteration = 0; iteration < maxIteration; ++iteration)
-	{
        
+    for (int iteration = 0; iteration < maxIteration; ++iteration)
+    {      
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
-	
+       	
         //Return sub vector of particles
         local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
-
+       
         //Gather all bodies into head node
         MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
-       
+               
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
-        
+                
         //Return sub vector of particles
 	local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
-	
+        	
         //Gather all bodies into head node
-        MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
-           
+        MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1,  vector_obj, 0, MPI_COMM_WORLD);
+        
         if (world_rank == 0)
         {
-	    //std::cout << "Writing to disk...1" << bodies.size()  << " " << iteration  << "\n";
-            fileOutput.str(std::string());
-            //std::cout << "Writing to disk...2\n";  
+	    fileOutput.str(std::string());
             fileOutput << output_file_name << iteration << ".txt";
-            //std::cout << "Writing to disk...3\n";
             fh.PersistPositions(fileOutput.str(), bodies, enable_output);
-            //std::cout << "Writing to disk...4\n";
         }
-        std::cout << "End of loop.." << iteration << " \n";
     }
-    std:: cout << "Exit Loop\n";
-
+    
     // Finish recording time from master node only
     if (world_rank == 0)
     {
@@ -145,14 +119,13 @@ int main(int argc, char **argv)
         fh.reportInfo(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run.
         //fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run. Saves to File.
     }
+   
     /*
     Destruct MPI environment
     */
-    MPI_Type_free(&position_obj);
-    MPI_Type_free(&velocity_obj);
-    MPI_Type_free(&particle_type);
     MPI_Type_free(&vector_obj);
     MPI_Finalize(); //Finalize the MPI Environment
+    
     return 0;
 }
 
