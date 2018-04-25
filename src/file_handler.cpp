@@ -47,7 +47,7 @@ class FileHandler{
 
         Returns a vector list with all loaded particles from file
         */
-        std::vector<Particle> read_from_file(std::string file_path, std::string enable_output)
+        void read_from_file(std::string file_path, std::string enable_output, std::vector<Particle> &p_bodies)
         {
             std::string line;
             std::string temp_line;
@@ -60,7 +60,6 @@ class FileHandler{
             float mass;
             float X;
             float Y;
-            std::vector<Particle> bodies;
 
             /*
             Opens input file at specified path 
@@ -94,7 +93,7 @@ class FileHandler{
                     mass = atof(temp_mass.c_str());
                     X = atof(temp_X.c_str());
                     Y = atof(temp_Y.c_str());
-                    bodies.push_back(Particle(mass, X, Y));
+                    p_bodies.push_back(Particle(mass, X, Y));
                     // std::cout << mass << "\n";
                     // std::cout << X << "\n";
                     // std::cout << Y << "\n";
@@ -110,8 +109,6 @@ class FileHandler{
                 std::cerr << "Unable to open file at location: [" << file_path << "]\n";
                 exit(1);   
             }
-            
-            return bodies;
         }
 
         /*

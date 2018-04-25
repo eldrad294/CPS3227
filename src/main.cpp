@@ -20,7 +20,7 @@ Constant Declarations
 Method Definitions
 */
 void PersistPositions(const std::string, std::vector<Particle>, bool);
-std::vector<Particle> read_from_file(std::string, std::string enable_output);
+void read_from_file(std::string, std::string enable_output, std::vector<Particle>);
 void reportInfo(std::string, double);
 void reportInfoToFile(std::string, double);
 double captureTimestamp(void);
@@ -76,7 +76,7 @@ int main(int argc, char **argv)
     if (world_rank == 0)
     {   
         // Opening Input File
-        bodies = fh.read_from_file(input_file_path, enable_output);
+        fh.read_from_file(input_file_path, enable_output, bodies);
 
         // Take Initial Time Measurement
         start_time_stamp = captureTimestamp();
@@ -85,19 +85,19 @@ int main(int argc, char **argv)
     for (int iteration = 0; iteration < maxIteration; ++iteration)
     {      
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
+        MPI_Bcast(&bodies,sizeof(bodies),vector_obj,0,MPI_COMM_WORLD);
        	
         //Return sub vector of particles
-        local_bodies = p.ComputeForces(bodies, gTerm, world_rank, world_size);
+        p.ComputeForces(bodies, local_bodies, gTerm, world_rank, world_size);
        
         //Gather all bodies into head node
         MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1, vector_obj, 0, MPI_COMM_WORLD);
                
         //Broadcast bodies for Particle Force Computation
-        MPI_Bcast(&bodies,bodies.size(),vector_obj,0,MPI_COMM_WORLD);
+        MPI_Bcast(&bodies,sizeof(bodies),vector_obj,0,MPI_COMM_WORLD);
                 
         //Return sub vector of particles
-	local_bodies = p.MoveBodies(bodies, deltaT, world_rank, world_size);
+	    p.MoveBodies(bodies, local_bodies, deltaT, world_rank, world_size);
         	
         //Gather all bodies into head node
         MPI_Gather(&local_bodies, 1, vector_obj, &bodies, 1,  vector_obj, 0, MPI_COMM_WORLD);

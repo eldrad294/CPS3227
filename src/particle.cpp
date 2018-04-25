@@ -25,7 +25,7 @@ class Particle
         /*
         * Compute forces of particles exerted on one another
         */
-        std::vector<Particle> ComputeForces(std::vector<Particle> &p_bodies, float p_gravitationalTerm, int world_rank, int 
+        void ComputeForces(std::vector<Particle> &p_bodies,std::vector<Particle> &p_localbodies, float p_gravitationalTerm, int world_rank, int 
 world_size)
         {
             Vector2 direction, force, acceleration;
@@ -44,21 +44,20 @@ world_size)
             }
 
             // Creating local vector of bodies upon which to perform particle lookup
-            std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
+            std::vector<Particle> &local_bodies(p_bodies[min], p_bodies[max]);
+            p_localbodies = local_bodies;
 
-            #pragma omp parallel for default(none) private(force, acceleration) shared(local_bodies, p_bodies,p_gravitationalTerm,min)
-            for (size_t j = 0; j < local_bodies.size(); ++j)
+            #pragma omp parallel for default(none) private(force, acceleration) shared(p_localbodies, p_bodies,p_gravitationalTerm)
+            for (size_t j = 0; j < p_localbodies.size(); ++j)
             {
-                Particle &p1 = p_bodies[min];
+                Particle &p1 = p_localbodies[j];
             
-                force = 0.f, acceleration = 0.f;
-                
-                min++;   
+                force = 0.f, acceleration = 0.f; 
             
-                #pragma omp parallel for default(none) private(direction,distance,force) shared(local_bodies, p_bodies,j,min,p1)
+                #pragma omp parallel for default(none) private(direction,distance,force) shared(p_bodies,j,p1)
                 for (size_t k = 0; k < p_bodies.size(); ++k)
                 {
-                    if (k == min) continue;
+                    if (k == j) continue;
                 
                     Particle &p2 = p_bodies[k];
                     
@@ -78,13 +77,12 @@ world_size)
                 // Integrate velocity (m/s)
                 p1.Velocity += acceleration;
             }
-            return local_bodies;
         }
 
         /*
         * Update particle positions
         */
-        std::vector<Particle> MoveBodies(std::vector<Particle> &p_bodies, float p_deltaT, int world_rank, int world_size)
+        void MoveBodies(std::vector<Particle> &p_bodies, std::vector<Particle> &p_localbodies, float p_deltaT, int world_rank, int world_size)
         //void MoveBodies(std::vector<Particle> p_bodies, float p_deltaT)
         {
             unsigned balanced_split, min, max;
@@ -101,33 +99,14 @@ world_size)
             }
 
             // Creating local vector of bodies upon which to perform particle lookup
-            std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
+            std::vector<Particle> &local_bodies(p_bodies[min], p_bodies[max]);
+            p_localbodies = local_bodies;
 
-            #pragma omp parallel for default(none) shared(local_bodies, p_bodies, p_deltaT)
-            for (size_t j = 0; j < local_bodies.size(); ++j)
+            #pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
+            for (size_t j = 0; j < p_localbodies.size(); ++j)
             {
-                local_bodies[j].Position += local_bodies[j].Velocity * p_deltaT;
+                p_localbodies[j].Position += p_localbodies[j].Velocity * p_deltaT;
             }
- 
-            return local_bodies;
-            // // Parallel Method
-            // std::vector<Particle> temp_list;
-            // #pragma omp parallel default(none) shared(p_bodies, p_deltaT) private(temp_list)
-            // {
-            //     #pragma omp for schedule(static)
-            //     for (size_t j = 0; j < p_bodies.size(); ++j)
-            //     {
-            //         temp_list.push_back(p_bodies[j]);
-            //         temp_list[j].Position += p_bodies[j].Velocity * p_deltaT;
-            //     }
-            //     p_bodies.clear();
-            //     #pragma omp for schedule(static) ordered //Barrier
-            //     for(int i=0; i < omp_get_num_threads(); i++)
-            //     {
-            //         #pragma omp ordered // Ensures that vectors are concatenated in correct order
-            //         p_bodies.insert(p_bodies.end(),temp_list.begin(),temp_list.end());
-            //     }
-            // }
         }
 };
 #endif
