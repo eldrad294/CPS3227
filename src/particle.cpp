@@ -43,8 +43,7 @@ class Particle
             }
 
             // Creating local vector of bodies upon which to perform particle lookup
-            std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
-            p_localbodies = local_bodies;
+            p_localbodies.assign(p_bodies.begin() + min, p_bodies.begin() + max);
 
             #pragma omp parallel for default(none) private(force, acceleration) shared(p_localbodies, p_bodies,p_gravitationalTerm)
             for (size_t j = 0; j < p_localbodies.size(); ++j)
@@ -98,8 +97,7 @@ class Particle
             }
 
             // Creating local vector of bodies upon which to perform particle lookup
-            std::vector<Particle> local_bodies(&p_bodies[min], &p_bodies[max]);
-            p_localbodies = local_bodies;
+            p_localbodies.assign(p_bodies.begin() + min, p_bodies.begin() + max);
 
             #pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
             for (size_t j = 0; j < p_localbodies.size(); ++j)

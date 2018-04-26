@@ -55,11 +55,9 @@ int main(int argc, char **argv)
     /*
     Defining MPI datatype
     */
-    /*
-    MPI_Datatype vector_obj;
-    MPI_Type_contiguous(5,MPI_FLOAT,&vector_obj);
-    MPI_Type_commit(&vector_obj);
-    */
+    // MPI_Datatype particle_type;
+    // MPI_Type_contiguous(10,MPI_FLOAT,&particle_type);
+    // MPI_Type_commit(&particle_type);
     // Defining (self-defined) MPI Position/Velocity datatypes
     MPI_Datatype position_obj;
     MPI_Type_vector(2,sizeof(float),sizeof(float),MPI_FLOAT, &position_obj);
