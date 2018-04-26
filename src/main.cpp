@@ -103,11 +103,12 @@ int main(int argc, char **argv)
         MPI_Bcast(&bodies,bodies.size(),particle_type,0,MPI_COMM_WORLD);
 
         //Return sub vector of particles
+        //std::cout << "Debug1: " << bodies[0].Velocity[0] << " \n";
         p.ComputeForces(bodies, local_bodies, gTerm, world_rank, world_size);
-        
+        //std::cout << "Debug2: " << local_bodies[0].Velocity[0] << " \n";
         //Gather all bodies into head node
         MPI_Gather(&local_bodies.front(), local_bodies.size(), particle_type, &bodies.front(), bodies.size(), particle_type, 0, MPI_COMM_WORLD);
-
+        //std::cout << "Debug3: " << bodies[0].Velocity[0] << " \n";
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),particle_type,0,MPI_COMM_WORLD);
 
@@ -122,7 +123,6 @@ int main(int argc, char **argv)
 	        fileOutput.str(std::string());
             fileOutput << output_file_name << iteration << ".txt";
             fh.PersistPositions(fileOutput.str(), bodies, enable_output);
-            std::cout << iteration << "End of Loop\n";
         }
     }
     
