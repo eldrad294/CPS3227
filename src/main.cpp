@@ -113,7 +113,7 @@ int main(int argc, char **argv)
             temp_bodies = (std::vector<Particle>*)malloc(world_size * bodies.size() * sizeof(Particle));
         }
         std::cout << "2 (" << local_bodies.size() << ") \n";
-        MPI_Gather(&local_bodies, local_bodies.size(), particle_type, temp_bodies, local_bodies.size(), particle_type, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_bodies, local_bodies.size(), particle_type, temp_bodies, bodies.size(), particle_type, 0, MPI_COMM_WORLD);
         std::cout << "3 (" << local_bodies.size() << ") \n";
         if (world_rank == 0)
         {
@@ -136,7 +136,7 @@ int main(int argc, char **argv)
         }
         std::cout << "6 (" << local_bodies.size() << ") \n";	
         //Gather all bodies into head node
-        MPI_Gather(&local_bodies, local_bodies.size(), particle_type, temp_bodies, local_bodies.size(),  particle_type, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_bodies, local_bodies.size(), particle_type, temp_bodies, bodies.size(),  particle_type, 0, MPI_COMM_WORLD);
 
         if (world_rank == 0)
         {
