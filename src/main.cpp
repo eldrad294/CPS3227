@@ -97,54 +97,31 @@ int main(int argc, char **argv)
         start_time_stamp = captureTimestamp();
     }
     
-    std::vector<Particle> *temp_bodies = NULL;
     for (int iteration = 0; iteration < maxIteration; ++iteration)
     {   
-        std::cout << "0 (" << bodies.size() << ") \n";
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),particle_type,0,MPI_COMM_WORLD);
+
         //Return sub vector of particles
         p.ComputeForces(bodies, local_bodies, gTerm, world_rank, world_size);
+        
         //Gather all bodies into head node
-        std::cout << "1 (" << bodies.size() << ") \n";
-        if (world_rank == 0)
-        {
-            free(temp_bodies);
-            temp_bodies = (std::vector<Particle>*)malloc(sizeof(bodies.size()));
-        }
-        std::cout << "2 (" << local_bodies.size() << ") \n";
-        MPI_Gather(&local_bodies, local_bodies.size(), particle_type, temp_bodies, bodies.size(), particle_type, 0, MPI_COMM_WORLD);
-        std::cout << "3 (" << (*temp_bodies)[0].Mass << ") \n";
-        if (world_rank == 0)
-        {
-            std::cout << "Entry " << (*temp_bodies)[0].Mass << "\n";
-            bodies = (*temp_bodies);
-            //bodies.assign(temp_bodies->begin(),temp_bodies->end());
-            std::cout << "Entry2\n";
-        }
-        std::cout << "4 (" << local_bodies.size() << ") \n";
+        MPI_Gather(&local_bodies.front(), local_bodies.size(), particle_type, &bodies.front(), bodies.size(), particle_type, 0, MPI_COMM_WORLD);
+
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies,bodies.size(),particle_type,0,MPI_COMM_WORLD);
+
         //Return sub vector of particles
-        std::cout << "5 (" << local_bodies.size() << ") \n"; 
-	    p.MoveBodies(bodies, local_bodies, deltaT, world_rank, world_size);
-        std::cout << "6 (" << local_bodies.size() << ") \n";
-        if (world_rank == 0)
-        {
-            free(temp_bodies);
-            temp_bodies = (std::vector<Particle>*)malloc(world_size * bodies.size() * sizeof(Particle));
-        }
-        std::cout << "6 (" << local_bodies.size() << ") \n";	
+	    p.MoveBodies(bodies, local_bodies, deltaT, world_rank, world_size);	
+
         //Gather all bodies into head node
-        MPI_Gather(&local_bodies, local_bodies.size(), particle_type, temp_bodies, bodies.size(),  particle_type, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_bodies.front(), local_bodies.size(), particle_type, &bodies.front(), bodies.size(),  particle_type, 0, MPI_COMM_WORLD);
 
         if (world_rank == 0)
         {
 	        fileOutput.str(std::string());
             fileOutput << output_file_name << iteration << ".txt";
             fh.PersistPositions(fileOutput.str(), bodies, enable_output);
-            //bodies = (*temp_bodies);
-            bodies.assign(temp_bodies->begin(),temp_bodies->end());
             std::cout << iteration << "End of Loop\n";
         }
     }
