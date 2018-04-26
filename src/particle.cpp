@@ -45,6 +45,8 @@ class Particle
             // Creating local vector of bodies upon which to perform particle lookup
             p_localbodies.assign(p_bodies.begin() + min, p_bodies.begin() + max);
 
+            std::cout << "Debug1: " << p_localbodies[0].Mass << "\n";
+
             #pragma omp parallel for default(none) private(force, acceleration) shared(p_localbodies, p_bodies,p_gravitationalTerm)
             for (size_t j = 0; j < p_localbodies.size(); ++j)
             {
@@ -75,6 +77,7 @@ class Particle
                 // Integrate velocity (m/s)
                 p1.Velocity += acceleration;
             }
+            std::cout << "Debug2: " << p_localbodies[0].Mass << "\n";
         }
 
         /*

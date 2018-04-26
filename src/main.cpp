@@ -110,16 +110,16 @@ int main(int argc, char **argv)
         if (world_rank == 0)
         {
             free(temp_bodies);
-            temp_bodies = (std::vector<Particle>*)malloc(world_size * bodies.size() * sizeof(Particle));
+            temp_bodies = (std::vector<Particle>*)malloc(sizeof(bodies.size()));
         }
         std::cout << "2 (" << local_bodies.size() << ") \n";
         MPI_Gather(&local_bodies, local_bodies.size(), particle_type, temp_bodies, bodies.size(), particle_type, 0, MPI_COMM_WORLD);
-        std::cout << "3 (" << local_bodies.size() << ") \n";
+        std::cout << "3 (" << (*temp_bodies)[0].Mass << ") \n";
         if (world_rank == 0)
         {
-            std::cout << "Entry\n";
-            //bodies = (*temp_bodies);
-            bodies.assign(temp_bodies->begin(),temp_bodies->end());
+            std::cout << "Entry " << (*temp_bodies)[0].Mass << "\n";
+            bodies = (*temp_bodies);
+            //bodies.assign(temp_bodies->begin(),temp_bodies->end());
             std::cout << "Entry2\n";
         }
         std::cout << "4 (" << local_bodies.size() << ") \n";
@@ -143,9 +143,9 @@ int main(int argc, char **argv)
 	        fileOutput.str(std::string());
             fileOutput << output_file_name << iteration << ".txt";
             fh.PersistPositions(fileOutput.str(), bodies, enable_output);
-            std::cout << iteration << "End of Loop\n";
             //bodies = (*temp_bodies);
             bodies.assign(temp_bodies->begin(),temp_bodies->end());
+            std::cout << iteration << "End of Loop\n";
         }
     }
     
