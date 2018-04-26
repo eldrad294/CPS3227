@@ -60,16 +60,16 @@ int main(int argc, char **argv)
     // MPI_Type_commit(&particle_type);
     // Defining (self-defined) MPI Position/Velocity datatypes
     MPI_Datatype position_obj;
-    MPI_Type_vector(2,sizeof(float),sizeof(float),MPI_FLOAT, &position_obj);
+    MPI_Type_vector(2,1,1,MPI_FLOAT, &position_obj);
     MPI_Type_commit(&position_obj);
     MPI_Datatype velocity_obj;
-    MPI_Type_vector(2,sizeof(float),sizeof(float),MPI_FLOAT, &velocity_obj);
+    MPI_Type_vector(2,1,1,MPI_FLOAT, &velocity_obj);
     MPI_Type_commit(&velocity_obj);
 
     // Defining (self-defined) MPI particle datatype
     int num_members = 3;
-    int lengths[] = {sizeof(position_obj),sizeof(velocity_obj),sizeof(MPI_FLOAT)};
-    MPI_Aint offsets[] = {offsetof(Particle,Position),offsetof(Particle,Velocity),offsetof(Particle,Mass)};
+    int lengths[] = {2,2,1};
+    MPI_Aint offsets[] = {2,2,1};
     MPI_Datatype types[] = {position_obj, velocity_obj, MPI_FLOAT};
     MPI_Datatype particle_type;
     MPI_Type_create_struct(num_members,lengths,offsets,types,&particle_type);
