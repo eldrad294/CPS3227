@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     /*
     Initialize the MPI environment
     */
-    MPI_Init(NULL, NULL);
+    MPI_Init(&argc, &argv);
     int world_size;
     MPI_Comm_size(MPI_COMM_WORLD, &world_size); //Get the number of processes
     int world_rank;
@@ -56,45 +56,51 @@ int main(int argc, char **argv)
     /*
     Defining MPI datatype
     */
-    int block_count = 2;
-    int block_length = 1;
-    int stride = 1;
-    MPI_Datatype position_obj;
-    MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &position_obj);
-    MPI_Type_commit(&position_obj);
-    MPI_Datatype velocity_obj;
-    MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &velocity_obj);
-    MPI_Type_commit(&velocity_obj);
-    // Defining (self-defined) MPI Particle datatype
-    int num_members = 3;
-    int lengths[] = {1,1,1};
-    MPI_Aint lb;
-    MPI_Aint extentFloat;
-    MPI_Type_get_extent(MPI_FLOAT, &lb, &extentFloat);
-    MPI_Aint offsets[] = {0, 2*extentFloat, 4*extentFloat};
-    MPI_Datatype types[] = {position_obj, velocity_obj, MPI_FLOAT};
+    //GS begin
     MPI_Datatype particle_type;
-    MPI_Type_create_struct(num_members,lengths,offsets,types,&particle_type);
+    MPI_Type_contiguous(5,MPI_FLOAT,&particle_type);
     MPI_Type_commit(&particle_type);
+    //GS else
+    // int block_count = 2;
+    // int block_length = 1;
+    // int stride = 1;
+    // MPI_Datatype position_obj;
+    // MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &position_obj);
+    // MPI_Type_commit(&position_obj);
+    // MPI_Datatype velocity_obj;
+    // MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &velocity_obj);
+    // MPI_Type_commit(&velocity_obj);
+    // // Defining (self-defined) MPI Particle datatype
+    // int num_members = 3;
+    // int lengths[] = {1,1,1};
+    // MPI_Aint lb;
+    // MPI_Aint extentFloat;
+    // MPI_Type_get_extent(MPI_FLOAT, &lb, &extentFloat);
+    // MPI_Aint offsets[] = {0, 2*extentFloat, 4*extentFloat};
+    // MPI_Datatype types[] = {position_obj, velocity_obj, MPI_FLOAT};
+    // MPI_Datatype particle_type;
+    // MPI_Type_create_struct(num_members,lengths,offsets,types,&particle_type);
+    // MPI_Type_commit(&particle_type);
+    //GS end
     /*
     Main Logic
     */
-    // Check if input file has been specified. Otherwise default to input_64.txt
-    if(argc > 3)
-    {
-        execution_identifier = argv[3]; //Denotes the type of execution - useful to interpret the type of run
-    }
-    if(argc > 2)
-    {
-        enable_output = argv[2]; //Parameter which disables/enables script output
-    }
-    if(argc > 1)
-    {
-        input_file_path = argv[1]; //Input file-path
-    }
-    // Read input files and start recording time from master node only
     if (world_rank == 0)
-    {   
+    {
+        // Check if input file has been specified. Otherwise default to input_64.txt
+        if(argc > 3)
+        {
+            execution_identifier = argv[3]; //Denotes the type of execution - useful to interpret the type of run
+        }
+        if(argc > 2)
+        {
+            enable_output = argv[2]; //Parameter which disables/enables script output
+        }
+        if(argc > 1)
+        {
+            input_file_path = argv[1]; //Input file-path
+        }
+
         // Opening Input File
         fh.read_from_file(input_file_path, enable_output, bodies);
 
@@ -104,9 +110,13 @@ int main(int argc, char **argv)
         // Assign variable with total body size so as to inform all slave nodes
         body_size = bodies.size();
     }
+
     // Broadcast body size
     MPI_Bcast(&body_size,1,MPI_INT,0,MPI_COMM_WORLD);
-    
+
+    //Synchronize step
+    MPI_Barrier(MPI_COMM_WORLD);
+
     // Reserve memory for bodies on slave nodes
     if (world_rank != 0)
     {
@@ -163,14 +173,11 @@ int main(int argc, char **argv)
     /*
     Destruct MPI environment
     */
-    MPI_Type_free(&position_obj);
-    MPI_Type_free(&velocity_obj);
-    MPI_Type_free(types);
+    //MPI_Type_free(&position_obj);
+    //MPI_Type_free(&velocity_obj);
     MPI_Type_free(&particle_type);
-    std::cout << "Debug 7 Rank: " << world_rank << "\n";
     MPI_Finalize(); //Finalize the MPI Environment
-    std::cout << "Debug 8 Rank: " << world_rank << "\n";
-    
+    //std::cout << "Debug 8 Rank: " << world_rank << "\n";    
     return 0;
 }
 
