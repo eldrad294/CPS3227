@@ -112,21 +112,22 @@ class FileHandler{
         /*
         * Writes run details to console out
         */
-        void reportInfo(std::string input_file_path, double tot_time)
+        void reportInfo(std::string input_file_path, double tot_time, std::string execution_identifier)
         {
+            std::cout << "Execution Type: " << execution_identifier << "\n";
             std::cout << "Input File: " << input_file_path << "\n";
             std::cout << "wtime = " << omp_get_wtime() << "\n";
             std::cout << "Number of processors = " << omp_get_num_procs() << "\n";
             std::cout << "Number of threads = " << omp_get_max_threads() << "\n";
             std::cout << "Clock Frequency = " << omp_get_wtick() << "\n";
-            std::cout << "1/wtick = " << 1.0/omp_get_wtick() << "\n\n";
+            std::cout << "1/wtick = " << 1.0/omp_get_wtick() << "\n";
             std::cout << "Total Elapsed Time: " << tot_time << " seconds\n--------------------------------------\n";
         }
 
         /*
         * Write run details to file
         */
-        void reportInfoToFile(std::string input_file_path, double tot_time)
+        void reportInfoToFile(std::string input_file_path, double tot_time, std::string execution_identifier)
         {
             /*
             Opens input file at specified path 
@@ -136,12 +137,13 @@ class FileHandler{
             std::ofstream output(strFilename.c_str(), std::ios_base::app); //Open File in Append mode
             if (output.is_open())
             {	
+                output << "Execution Type: " << execution_identifier << "\n";
                 output << "Input File: " << input_file_path << "\n";
                 output << "wtime = " << omp_get_wtime() << "\n";
                 output << "Number of processors = " << omp_get_num_procs() << "\n";
                 output << "Number of threads = " << omp_get_max_threads() << "\n";
                 output << "Clock Frequency = " << omp_get_wtick() << "\n";
-                output << "1/wtick = " << 1.0/omp_get_wtick() << "\n\n";
+                output << "1/wtick = " << 1.0/omp_get_wtick() << "\n";
                 output << "Total Elapsed Time: " << tot_time << " seconds\n--------------------------------------\n";
                 
                 output.close();

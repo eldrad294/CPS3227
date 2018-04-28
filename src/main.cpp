@@ -3,13 +3,13 @@ Main class, which contains all the logic and respective references
 */
 // Library Imports
 #include <omp.h>
-#include <mpi.h>
-#include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
 #include <sstream>
 #include "file_handler.cpp"
 #include "particle.cpp"
+#include <mpi.h>
+#include <stdio.h>
 /*
 Constant Declarations
 */
@@ -28,7 +28,16 @@ double captureTimestamp(void);
 Main Routine
 */
 int main(int argc, char **argv)
-{
+{    
+    std::cout << "Initializing MPI_Environment..\n";
+    /*
+    Initialize the MPI environment
+    */
+    MPI_Init(NULL, NULL);
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size); //Get the number of processes
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
     /*
     Variable Declarations
     */
@@ -42,38 +51,26 @@ int main(int argc, char **argv)
     std::vector<Particle> local_bodies;
     std::string input_file_path = "CPS3227_Assignment/input/input_64.txt";    
     std::string output_file_name = "CPS3227_Assignment/output/nbody_";
+    std::string execution_identifier = "test_run";
     int body_size = 0;
-        
-    /*
-    Initialize the MPI environment
-    */
-    MPI_Init(NULL, NULL);
-    int world_size;
-    MPI_Comm_size(MPI_COMM_WORLD, &world_size); //Get the number of processes
-    int world_rank;
-    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank); //Get the rank of the process
-
     /*
     Defining MPI datatype
     */
-    // MPI_Datatype particle_type;
-    // MPI_Type_contiguous(10,MPI_FLOAT,&particle_type);
-    // MPI_Type_commit(&particle_type);
-    // Defining (self-defined) MPI Position/Velocity datatypes
+    int block_count = 2;
+    int block_length = 1;
+    int stride = 1;
     MPI_Datatype position_obj;
-    MPI_Type_vector(2,1,1,MPI_FLOAT, &position_obj);
+    MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &position_obj);
     MPI_Type_commit(&position_obj);
     MPI_Datatype velocity_obj;
-    MPI_Type_vector(2,1,1,MPI_FLOAT, &velocity_obj);
+    MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &velocity_obj);
     MPI_Type_commit(&velocity_obj);
-
-    // Defining (self-defined) MPI particle datatype
+    // Defining (self-defined) MPI Particle datatype
     int num_members = 3;
     int lengths[] = {1,1,1};
     MPI_Aint lb;
     MPI_Aint extentFloat;
     MPI_Type_get_extent(MPI_FLOAT, &lb, &extentFloat);
-    //MPI_Aint offsets[] = {2,2,2};
     MPI_Aint offsets[] = {0, 2*extentFloat, 4*extentFloat};
     MPI_Datatype types[] = {position_obj, velocity_obj, MPI_FLOAT};
     MPI_Datatype particle_type;
@@ -83,15 +80,18 @@ int main(int argc, char **argv)
     Main Logic
     */
     // Check if input file has been specified. Otherwise default to input_64.txt
+    if(argc > 3)
+    {
+        execution_identifier = argv[3]; //Denotes the type of execution - useful to interpret the type of run
+    }
+    if(argc > 2)
+    {
+        enable_output = argv[2]; //Parameter which disables/enables script output
+    }
     if(argc > 1)
     {
-        enable_output = argv[2];
+        input_file_path = argv[1]; //Input file-path
     }
-    if(argc > 0)
-    {
-        input_file_path = argv[1];
-    }
-    
     // Read input files and start recording time from master node only
     if (world_rank == 0)
     {   
@@ -104,35 +104,29 @@ int main(int argc, char **argv)
         // Assign variable with total body size so as to inform all slave nodes
         body_size = bodies.size();
     }
-
     // Broadcast body size
     MPI_Bcast(&body_size,1,MPI_INT,0,MPI_COMM_WORLD);
-
+    
     // Reserve memory for bodies on slave nodes
     if (world_rank != 0)
     {
         bodies.resize(body_size);
     }
 
-    std::cout << "Debug 1 Rank: " << world_rank << "\n";
     for (int iteration = 0; iteration < maxIteration; ++iteration)
     {   
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
-        std::cout << "Debug 2 Rank: " << world_rank << " Position: " << bodies[0].Position[0] << " Iteration: " << iteration << "\n";
         
         //Broadcast bodies for Particle Force Computation
         MPI_Bcast(&bodies.front(),bodies.size(),particle_type,0,MPI_COMM_WORLD);
-        std::cout << "Debug 3 Rank: " << world_rank << " Position: " << bodies[0].Position[0] << " Iteration: " << iteration << "\n";
         
         //Return sub vector of particles
         p.ComputeForces(bodies, local_bodies, gTerm, world_rank, world_size);
 
-        std::cout << "Debug 4 Rank: " << world_rank << " Bodies Size: " << bodies.size() << " Local Bodies Size: " << local_bodies.size() << " \n";
         //Gather all bodies into head node
         MPI_Gather(&local_bodies.front(), local_bodies.size(), particle_type, &bodies.front(), bodies.size(), particle_type, 0, MPI_COMM_WORLD);
         
-        std::cout << "Debug 5 Rank: " << world_rank << "\n";
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
         
@@ -163,15 +157,15 @@ int main(int argc, char **argv)
         // Take Final Time Measurement
         end_time_stamp = captureTimestamp();
 
-        fh.reportInfo(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run.
-        //fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp); //Logs increment run. Saves to File.
+        fh.reportInfo(input_file_path, end_time_stamp - start_time_stamp, execution_identifier); //Logs increment run.
+        //fh.reportInfoToFile(input_file_path, end_time_stamp - start_time_stamp, execution_identifier); //Logs increment run. Saves to File.
     }
     /*
     Destruct MPI environment
     */
-    std::cout << "Debug 6 Rank: " << world_rank << "\n";
     MPI_Type_free(&position_obj);
     MPI_Type_free(&velocity_obj);
+    MPI_Type_free(types);
     MPI_Type_free(&particle_type);
     std::cout << "Debug 7 Rank: " << world_rank << "\n";
     MPI_Finalize(); //Finalize the MPI Environment
