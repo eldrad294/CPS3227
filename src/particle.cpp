@@ -82,8 +82,12 @@ class Particle
 
                 p_localbodies[j].Velocity = p1.Velocity;
 
+                // if (p_localbodies[j].Velocity[0] < .5 or p_localbodies[j].Velocity[1] < .5){
+                //     std::cout << "Iteration: " << min << " Velocity0: " << p_localbodies[j].Velocity[0] << " Velocity1: " << p_localbodies[j].Velocity[1] << " Distance: " << distance << "\n";
+                // }
                 min++;
             }
+            //std::cout << "Position0: " << p_localbodies[20].Position[0] << " Position1: " << p_localbodies[20].Position[1] << " Velocity0: " << p_localbodies[20].Velocity[0] << " Velocity1: " << p_localbodies[20].Velocity[1] << " WorldRank: " << world_rank << "\n";
         }
 
         /*
@@ -111,7 +115,7 @@ class Particle
             {
                 p_localbodies[j].Position += p_localbodies[j].Velocity * p_deltaT;
             }
-            //std::cout << "Position0: " << p_localbodies[1].Position[0] << " Position1: " << p_localbodies[1].Position[1] << " Velocity0: " << p_localbodies[1].Velocity[0] << " Velocity1: " << p_localbodies[1].Velocity[1] << "\n";
+            //std::cout << "Position0: " << p_localbodies[20].Position[0] << " Position1: " << p_localbodies[20].Position[1] << " Velocity0: " << p_localbodies[20].Velocity[0] << " Velocity1: " << p_localbodies[20].Velocity[1] << " WorldRank: " << world_rank << "\n";
         }
 };
 #endif

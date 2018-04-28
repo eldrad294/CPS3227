@@ -57,30 +57,30 @@ int main(int argc, char **argv)
     Defining MPI datatype
     */
     //GS begin
-    MPI_Datatype particle_type;
-    MPI_Type_contiguous(5,MPI_FLOAT,&particle_type);
-    MPI_Type_commit(&particle_type);
-    //GS else
-    // int block_count = 2;
-    // int block_length = 1;
-    // int stride = 1;
-    // MPI_Datatype position_obj;
-    // MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &position_obj);
-    // MPI_Type_commit(&position_obj);
-    // MPI_Datatype velocity_obj;
-    // MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &velocity_obj);
-    // MPI_Type_commit(&velocity_obj);
-    // // Defining (self-defined) MPI Particle datatype
-    // int num_members = 3;
-    // int lengths[] = {1,1,1};
-    // MPI_Aint lb;
-    // MPI_Aint extentFloat;
-    // MPI_Type_get_extent(MPI_FLOAT, &lb, &extentFloat);
-    // MPI_Aint offsets[] = {0, 2*extentFloat, 4*extentFloat};
-    // MPI_Datatype types[] = {position_obj, velocity_obj, MPI_FLOAT};
     // MPI_Datatype particle_type;
-    // MPI_Type_create_struct(num_members,lengths,offsets,types,&particle_type);
+    // MPI_Type_contiguous(5,MPI_FLOAT,&particle_type);
     // MPI_Type_commit(&particle_type);
+    //GS else
+    int block_count = 2;
+    int block_length = 1;
+    int stride = 1;
+    MPI_Datatype position_obj;
+    MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &position_obj);
+    MPI_Type_commit(&position_obj);
+    MPI_Datatype velocity_obj;
+    MPI_Type_vector(block_count,block_length,stride,MPI_FLOAT, &velocity_obj);
+    MPI_Type_commit(&velocity_obj);
+    // Defining (self-defined) MPI Particle datatype
+    int num_members = 3;
+    int lengths[] = {1,1,1};
+    MPI_Aint lb;
+    MPI_Aint extentFloat;
+    MPI_Type_get_extent(MPI_FLOAT, &lb, &extentFloat);
+    MPI_Aint offsets[] = {0, 2*extentFloat, 4*extentFloat};
+    MPI_Datatype types[] = {position_obj, velocity_obj, MPI_FLOAT};
+    MPI_Datatype particle_type;
+    MPI_Type_create_struct(num_members,lengths,offsets,types,&particle_type);
+    MPI_Type_commit(&particle_type);
     //GS end
     /*
     Main Logic
@@ -133,10 +133,13 @@ int main(int argc, char **argv)
         
         //Return sub vector of particles
         p.ComputeForces(bodies, local_bodies, gTerm, world_rank, world_size);
-
+        
         //Gather all bodies into head node
         MPI_Gather(&local_bodies.front(), local_bodies.size(), particle_type, &bodies.front(), bodies.size(), particle_type, 0, MPI_COMM_WORLD);
         
+        std::cout << "After Gather Position0: " << bodies[40].Position[0] << " Position1: " << bodies[40].Position[1] << " Velocity0: " << bodies[40].Velocity[0] << " Velocity1: " << bodies[40].Velocity[1] << " WorldRank: " << world_rank << "\n";
+        
+
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
         
