@@ -45,7 +45,7 @@ class Particle
             // Creating local vector of bodies upon which to perform particle lookup
             p_localbodies.assign(p_bodies.begin() + min, p_bodies.begin() + max);
 
-            #pragma omp parallel for default(none) private(acceleration) shared(p_localbodies,p_bodies, min, p_gravitationalTerm, force)
+            //#pragma omp parallel for default(none) private(acceleration) shared(p_localbodies,p_bodies, min, p_gravitationalTerm, force)
             for (size_t j = 0; j < p_localbodies.size(); ++j)
             {
                 Particle &p1 = p_localbodies[j];
@@ -54,7 +54,7 @@ class Particle
 
                 min++;
             
-                #pragma omp parallel for default(none) private(direction,distance) shared(j,p1,p_bodies,min,force)
+                //#pragma omp parallel for default(none) private(direction,distance) shared(j,p1,p_bodies,min,force)
                 for (size_t k = 0; k < p_bodies.size(); ++k)
                 {
                     if (k == min) continue;
@@ -101,7 +101,7 @@ class Particle
             // Creating local vector of bodies upon which to perform particle lookup
             p_localbodies.assign(p_bodies.begin() + min, p_bodies.begin() + max);
 
-            #pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
+            //#pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
             for (size_t j = 0; j < p_localbodies.size(); ++j)
             {
                 p_localbodies[j].Position += p_localbodies[j].Velocity * p_deltaT;
