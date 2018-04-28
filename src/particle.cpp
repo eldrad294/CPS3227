@@ -31,17 +31,10 @@ class Particle
             float distance;
             unsigned balanced_split, min, max;
 
-            // if(world_rank == 1){
-            //     std::cout << "DEBUG INTERNAL VELOCITY0: " << p_bodies[0].Velocity[0] << "\n";
-            //     std::cout << "DEBUG INTERNAL VELOCITY1: " << p_bodies[0].Velocity[1] << "\n";
-            //     std::cout << "DEBUG INTERNAL PARTICLE0: " << p_bodies[0].Position[0] << "\n";
-            //     std::cout << "DEBUG INTERNAL PARTICLE1: " << p_bodies[0].Position[1] << "\n";
-            // }
-
             // Calculating partition split, and current range of bodies to calculate for current node
             balanced_split = p_bodies.size() / world_size;
             min = balanced_split * world_rank;
-            max = min + balanced_split;
+            max = min + balanced_split - 1;
 
             // Cater for uneven partition splits
             if(world_rank == world_size-1)
@@ -98,7 +91,7 @@ class Particle
             // Calculating balanced split, and current range of bodies to calculate for current node
             balanced_split = p_bodies.size() / world_size;
             min = balanced_split * world_rank;
-            max = min + balanced_split + 1;
+            max = min + balanced_split - 1;
 
             // Cater for uneven partition splits
             if(world_rank == world_size-1)
