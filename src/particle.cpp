@@ -44,18 +44,20 @@ class Particle
 
             // Creating local vector of bodies upon which to perform particle lookup
             p_localbodies.assign(p_bodies.begin() + min, p_bodies.begin() + max);
-            std::cout << "Rank:" << world_rank << " BalancedSplit:" << balanced_split << " Min:" << min << " Max:" << max << "\n";
+            //std::cout << "Rank:" << world_rank << " BalancedSplit:" << balanced_split << " Min:" << min << " Max:" << max << "\n";
 
-            #pragma omp parallel for default(none) private(acceleration) shared(p_localbodies,p_bodies, min, p_gravitationalTerm, force)
+            //#pragma omp parallel for default(none) private(acceleration) shared(p_localbodies,p_bodies, min, p_gravitationalTerm, force)
             for (size_t j = 0; j < p_localbodies.size(); ++j)
             {
                 Particle &p1 = p_localbodies[j];
             
                 force = 0.f, acceleration = 0.f; 
-
-                min++;
+                // if (min == 0){
+                //     std:: cout << "Velocity0: "<< p1.Velocity[0] << " Velocity1: "<<p1.Velocity[1] << " Acceleration0: "<< acceleration[0] 
+                //     << " Acceleration1: " << acceleration[1] << " Direction0: " << direction[0] << " Direction1: " << direction[1] << "\n";
+                // }
             
-                #pragma omp parallel for default(none) private(direction,distance) shared(j,p1,p_bodies,min,force)
+                //#pragma omp parallel for default(none) private(direction,distance) shared(j,p1,p_bodies,min,force)
                 for (size_t k = 0; k < p_bodies.size(); ++k)
                 {
                     if (k == min) continue;
@@ -79,6 +81,8 @@ class Particle
                 p1.Velocity += acceleration;
 
                 p_localbodies[j].Velocity = p1.Velocity;
+
+                min++;
             }
         }
 
@@ -102,11 +106,12 @@ class Particle
             // Creating local vector of bodies upon which to perform particle lookup
             p_localbodies.assign(p_bodies.begin() + min, p_bodies.begin() + max);
 
-            #pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
+            //#pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
             for (size_t j = 0; j < p_localbodies.size(); ++j)
             {
                 p_localbodies[j].Position += p_localbodies[j].Velocity * p_deltaT;
             }
+            //std::cout << "Position0: " << p_localbodies[1].Position[0] << " Position1: " << p_localbodies[1].Position[1] << " Velocity0: " << p_localbodies[1].Velocity[0] << " Velocity1: " << p_localbodies[1].Velocity[1] << "\n";
         }
 };
 #endif
