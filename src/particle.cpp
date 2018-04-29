@@ -42,9 +42,9 @@ class Particle
             {
                max = body_count;
             }
-            //std::cout<<p_mass[0]<<"\n";
+            
             //#pragma omp parallel for default(none) private(acceleration) shared(p_localbodies,p_bodies, min, p_gravitationalTerm, force)
-            for (int j = min; j < max; ++j)
+            for (int j = min; j <= max; ++j)
             {
                 Particle p1(p_mass[j], p_position_0[j], p_position_1[j], p_velocity_0[j], p_velocity_1[j]);
             
@@ -101,7 +101,7 @@ class Particle
             }
 
             //#pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
-            for (int j = min; j < max; ++j)
+            for (int j = min; j <= max; ++j)
             {
                 p_local_position_0[counter] += p_velocity_0[j] * p_deltaT;
                 p_local_position_1[counter] += p_velocity_1[j] * p_deltaT;

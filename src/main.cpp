@@ -78,10 +78,21 @@ int main(int argc, char **argv)
     float *velocity_1 = new float[body_count];
     float *position_0 = new float[body_count];
     float *position_1 = new float[body_count];
-    float *local_velocity_0 = new float[body_count/world_size];
-    float *local_velocity_1 = new float[body_count/world_size];
-    float *local_position_0 = new float[body_count/world_size];
-    float *local_position_1 = new float[body_count/world_size];
+    float local_velocity_0[body_count/world_size];
+    float local_velocity_1[body_count/world_size];
+    float local_position_0[body_count/world_size];
+    float local_position_1[body_count/world_size];
+    // Initialize local structures
+    for (int i=0;i<body_count/world_size;i++){
+        velocity_0[i] = 0;
+        velocity_1[i] = 0;
+        position_0[i] = 0;
+        position_1[i] = 0;
+        local_velocity_0[i] = 0;
+        local_velocity_1[i] = 0;
+        local_position_0[i] = 0;
+        local_position_1[i] = 0;
+    }
 
     if (world_rank == 0)
     {
@@ -115,17 +126,19 @@ int main(int argc, char **argv)
 
         //Compute Particle Velocities
         p.ComputeForces(body_count, mass, velocity_0, velocity_1, position_0, position_1, local_velocity_0, local_velocity_1, gTerm, world_rank, world_size);
-        //std::cout <<"world_rank:"<<world_rank<< " velocity_0:" << velocity_0[30] <<" position_0:"<<position_0[30]<<" local_velocity_0:"<<local_velocity_0[30]<<"\n";        
+        
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
+        //std::cout <<"world_rank:"<<world_rank<< " local_velocity_0:"<<local_velocity_0[0]<<"\n";        
         
         //Gather all updated velocities into head node
-        MPI_Gather(local_velocity_0, body_count / world_size, MPI_FLOAT, velocity_0, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
-        MPI_Gather(local_velocity_1, body_count / world_size, MPI_FLOAT, velocity_1, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
-        std::cout  << "World_Rank: " << world_rank << " Velocity_0: " << velocity_0[31] << "\n";
-        //std::cout  << "World_Rank: " << world_rank << " local_velocity_0: " << local_velocity_0[0] << "\n";
+        MPI_Gather(&local_velocity_0, body_count / world_size, MPI_FLOAT, velocity_0, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_velocity_1, body_count / world_size, MPI_FLOAT, velocity_1, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
+        
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
+        std::cout  << "World_Rank: " << world_rank << " Velocity_0: " << position_0[36] << "\n";
+        //std::cout  << "World_Rank: " << world_rank << " local_velocity_0: " << local_velocity_0[0] << "\n";
         
         //Broadcast Particle Velocity
         MPI_Bcast(velocity_0,body_count,MPI_FLOAT,0,MPI_COMM_WORLD);
@@ -138,8 +151,8 @@ int main(int argc, char **argv)
         MPI_Barrier(MPI_COMM_WORLD);
 
         //Gather all updated positions into head node
-        MPI_Gather(local_position_0, body_count / world_size, MPI_FLOAT, position_0, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
-        MPI_Gather(local_position_1, body_count / world_size, MPI_FLOAT, position_1, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_position_0, body_count / world_size, MPI_FLOAT, position_0, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
+        MPI_Gather(&local_position_1, body_count / world_size, MPI_FLOAT, position_1, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
@@ -169,10 +182,6 @@ int main(int argc, char **argv)
     delete[] velocity_1;
     delete[] position_0;
     delete[] position_1;
-    delete[] local_velocity_0;
-    delete[] local_velocity_1;
-    delete[] local_position_0;
-    delete[] local_position_1;
 
     /*
     Destruct MPI environment
