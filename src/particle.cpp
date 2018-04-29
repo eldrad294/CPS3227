@@ -72,13 +72,13 @@ class Particle
                 
                 // Integrate velocity (m/s)
                 p1.Velocity += acceleration;
-
+                //std::cout << "Position0: " << p1.Position[0] << " Velocity0: " << p1.Velocity[0] << "\n";
                 // Update Velocities
                 p_local_velocity_0[counter] = p1.Velocity[0];
                 p_local_velocity_1[counter] = p1.Velocity[1];
                 counter++;
             }
-            //std::cout << "p_local_velocity_0: " << p_local_velocity_0[30] << " p_local_velocity_1: " << p_local_velocity_1[30] << " WorldRank: " << world_rank << "\n";
+            // std::cout << "p_local_velocity_0: " << p_local_velocity_0[30] << " p_local_velocity_1: " << p_local_velocity_1[30] << " WorldRank: " << world_rank << "\n";
         }
 
         /*

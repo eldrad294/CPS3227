@@ -122,11 +122,11 @@ int main(int argc, char **argv)
         //Broadcast Particle Positions
         MPI_Bcast(position_0,body_count,MPI_FLOAT,0,MPI_COMM_WORLD);
         MPI_Bcast(position_1,body_count,MPI_FLOAT,0,MPI_COMM_WORLD);
-        //std::cout << "World_Rank: " << world_rank << " position_1(63): " << position_1[63] << "\n";
 
         //Compute Particle Velocities
+        //std::cout << " WorldRank: " << world_rank << " Velocity0: " << velocity_0[30] << " Position0: " << position_0[30] << " Mass: "<< mass[30] << "\n";
         p.ComputeForces(body_count, mass, velocity_0, velocity_1, position_0, position_1, local_velocity_0, local_velocity_1, gTerm, world_rank, world_size);
-        
+        //std::cout << "local_velocity_0: " << local_velocity_0[30] << " local_velocity_1: " << local_velocity_1[30] << " WorldRank: " << world_rank << "\n";
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
         //std::cout <<"world_rank:"<<world_rank<< " local_velocity_0:"<<local_velocity_0[0]<<"\n";        
@@ -137,7 +137,7 @@ int main(int argc, char **argv)
         
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
-        std::cout  << "World_Rank: " << world_rank << " Velocity_0: " << position_0[36] << "\n";
+        //std::cout  << "World_Rank: " << world_rank << " Position0: " << position_0[40] << " Position1:" << position_1[40] << "\n";
         //std::cout  << "World_Rank: " << world_rank << " local_velocity_0: " << local_velocity_0[0] << "\n";
         
         //Broadcast Particle Velocity
