@@ -19,10 +19,10 @@ Constant Declarations
 /*
 Method Prototypes
 */
-void PersistPositions(const std::string, int, float, float, float, float);
-void read_from_file(std::string, std::string, float, float, float);
-void reportInfo(std::string, double);
-void reportInfoToFile(std::string, double);
+// void PersistPositions(const std::string, int, float, float, float, float);
+// void read_from_file(std::string, std::string, float, float, float);
+// void reportInfo(std::string, double);
+// void reportInfoToFile(std::string, double);
 double captureTimestamp(void);
 /*
 Main Routine
@@ -92,11 +92,10 @@ int main(int argc, char **argv)
     /*
     Main Logic
     */
-    //Broadcast particle (unchanging) masses to all slaves
+    //Broadcast particle (unchanging) masses to all slaves - Done once at the beginning for efficiency
     MPI_Bcast(mass,body_count,MPI_FLOAT,0,MPI_COMM_WORLD);
 
-    //Synchronize step
-    MPI_Barrier(MPI_COMM_WORLD);
+    //std::cout << "World_Rank: " << world_rank << " Mass10: " << mass[10] << "\n";
 
     if (world_rank == 0)
     {
@@ -112,17 +111,19 @@ int main(int argc, char **argv)
         //Broadcast Particle Positions
         MPI_Bcast(position_0,body_count,MPI_FLOAT,0,MPI_COMM_WORLD);
         MPI_Bcast(position_1,body_count,MPI_FLOAT,0,MPI_COMM_WORLD);
-        
+        //std::cout << "World_Rank: " << world_rank << " position_1(63): " << position_1[63] << "\n";
+
         //Compute Particle Velocities
         p.ComputeForces(body_count, mass, velocity_0, velocity_1, position_0, position_1, local_velocity_0, local_velocity_1, gTerm, world_rank, world_size);
-        
+        //std::cout <<"world_rank:"<<world_rank<< " velocity_0:" << velocity_0[30] <<" position_0:"<<position_0[30]<<" local_velocity_0:"<<local_velocity_0[30]<<"\n";        
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
         
         //Gather all updated velocities into head node
-        MPI_Gather(local_velocity_0, body_count / world_size, MPI_FLOAT, velocity_0, body_count, MPI_FLOAT, 0, MPI_COMM_WORLD);
-        MPI_Gather(local_velocity_1, body_count / world_size, MPI_FLOAT, velocity_1, body_count, MPI_FLOAT, 0, MPI_COMM_WORLD);
-        
+        MPI_Gather(local_velocity_0, body_count / world_size, MPI_FLOAT, velocity_0, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
+        MPI_Gather(local_velocity_1, body_count / world_size, MPI_FLOAT, velocity_1, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
+        std::cout  << "World_Rank: " << world_rank << " Velocity_0: " << velocity_0[31] << "\n";
+        //std::cout  << "World_Rank: " << world_rank << " local_velocity_0: " << local_velocity_0[0] << "\n";
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
         
@@ -137,12 +138,12 @@ int main(int argc, char **argv)
         MPI_Barrier(MPI_COMM_WORLD);
 
         //Gather all updated positions into head node
-        MPI_Gather(local_position_0, body_count / world_size, MPI_FLOAT, position_0, body_count, MPI_FLOAT, 0, MPI_COMM_WORLD);
-        MPI_Gather(local_position_1, body_count / world_size, MPI_FLOAT, position_1, body_count, MPI_FLOAT, 0, MPI_COMM_WORLD);
+        MPI_Gather(local_position_0, body_count / world_size, MPI_FLOAT, position_0, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
+        MPI_Gather(local_position_1, body_count / world_size, MPI_FLOAT, position_1, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
         //Synchronize step
         MPI_Barrier(MPI_COMM_WORLD);
-
+        //std::cout << "Rank:" << world_rank << " position_0:" << position_0[0] << "\n";
         //Master node persist file output
         if (world_rank == 0)
         {

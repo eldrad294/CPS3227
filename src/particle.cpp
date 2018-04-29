@@ -42,16 +42,11 @@ class Particle
             {
                max = body_count;
             }
-
+            //std::cout<<p_mass[0]<<"\n";
             //#pragma omp parallel for default(none) private(acceleration) shared(p_localbodies,p_bodies, min, p_gravitationalTerm, force)
             for (int j = min; j < max; ++j)
             {
                 Particle p1(p_mass[j], p_position_0[j], p_position_1[j], p_velocity_0[j], p_velocity_1[j]);
-                // p1.Mass = p_mass[j];
-                // p1.Velocity[0] = p_velocity_0[j];
-                // p1.Velocity[1] = p_velocity_1[j];
-                // p1.Position[0] = p_position_0[j];
-                // p1.Position[1] = p_position_1[j];
             
                 force = 0.f, acceleration = 0.f; 
             
@@ -61,12 +56,6 @@ class Particle
                     if (k == min) continue;
 
                     Particle p2(p_mass[k], p_position_0[k], p_position_1[k], p_velocity_0[k], p_velocity_1[k]);
-                    // Particle &p2;
-                    // p2.Mass = p_mass[j];
-                    // p2.Velocity[0] = p_velocity_0[k];
-                    // p2.Velocity[1] = p_velocity_1[k];
-                    // p2.Position[0] = p_position_0[k];
-                    // p2.Position[1] = p_position_1[k];
                     
                     // Compute direction vector
                     direction = p2.Position - p1.Position;
@@ -89,7 +78,7 @@ class Particle
                 p_local_velocity_1[counter] = p1.Velocity[1];
                 counter++;
             }
-            //std::cout << "Position0: " << p_localbodies[20].Position[0] << " Position1: " << p_localbodies[20].Position[1] << " Velocity0: " << p_localbodies[20].Velocity[0] << " Velocity1: " << p_localbodies[20].Velocity[1] << " WorldRank: " << world_rank << "\n";
+            //std::cout << "p_local_velocity_0: " << p_local_velocity_0[30] << " p_local_velocity_1: " << p_local_velocity_1[30] << " WorldRank: " << world_rank << "\n";
         }
 
         /*
