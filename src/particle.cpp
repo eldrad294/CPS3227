@@ -28,8 +28,10 @@ class Particle
         void ComputeForces(int body_count, float *p_mass, float *p_velocity_0, float *p_velocity_1, float *p_position_0, float *p_position_1, float *p_local_velocity_0, float *p_local_velocity_1, float p_gravitationalTerm, int world_rank, int world_size)
         {
             Vector2 direction, force, acceleration;
-            float distance;
-            short balanced_split, min, max;
+            float distance = .0;
+            short balanced_split = 0;
+            short min = 0;
+            short max = 0;
             short counter=0;
 
             // Calculating partition split, and current range of bodies to calculate for current node
@@ -43,14 +45,14 @@ class Particle
                max = body_count;
             }
             
-            //#pragma omp parallel for default(none) private(acceleration) shared(p_localbodies,p_bodies, min, p_gravitationalTerm, force)
+            //#pragma omp parallel for default(none) shared(p_local_velocity_0,p_local_velocity_1,counter) private(min,max,p_mass,p_position_0,p_position_1,acceleration,force,p_gravitationalTerm,p_velocity_0,p_velocity_1)
             for (int j = min; j <= max; ++j)
             {
                 Particle p1(p_mass[j], p_position_0[j], p_position_1[j], p_velocity_0[j], p_velocity_1[j]);
             
                 force = 0.f, acceleration = 0.f; 
             
-                //#pragma omp parallel for default(none) private(direction,distance) shared(j,p1,p_bodies,min,force)
+                #pragma omp parallel for default(none) shared(distance, force, direction) private(body_count,min,p_mass,p_velocity_0,p_velocity_1,p_position_0,p_position_1,p1) 
                 for (int k = 0; k < body_count; ++k)
                 {
                     if (k == min) continue;
@@ -86,7 +88,9 @@ class Particle
         */
         void MoveBodies(int body_count, float *p_mass, float *p_velocity_0, float *p_velocity_1, float *p_position_0, float *p_position_1, float *p_local_position_0, float *p_local_position_1, float p_deltaT, int world_rank, int world_size)
         {
-            short balanced_split, min, max;
+            short balanced_split = 0; 
+            short min = 0; 
+            short max = 0;
             short counter=0;
 
             // Calculating partition split, and current range of bodies to calculate for current node
@@ -100,7 +104,7 @@ class Particle
                max = body_count;
             }
 
-            //#pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
+            #pragma omp parallel for default(none) shared(p_local_position_0, p_local_position_1, counter,p_velocity_0,p_velocity_1,p_position_0,p_position_1,min,max) private(p_deltaT)
             for (int j = min; j <= max; ++j)
             {
                 p_local_position_0[counter] = p_position_0[j] + (p_velocity_0[j] * p_deltaT);
