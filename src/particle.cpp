@@ -45,14 +45,14 @@ class Particle
                max = body_count;
             }
             
-            //#pragma omp parallel for default(none) shared(p_local_velocity_0,p_local_velocity_1,counter) private(min,max,p_mass,p_position_0,p_position_1,acceleration,force,p_gravitationalTerm,p_velocity_0,p_velocity_1)
+            //#pragma omp parallel for default(none) shared(p_local_velocity_0,p_local_velocity_1,counter,min,max,p_mass,p_position_0,p_position_1,acceleration,force,p_gravitationalTerm,p_velocity_0,p_velocity_1)
             for (int j = min; j <= max; ++j)
             {
                 Particle p1(p_mass[j], p_position_0[j], p_position_1[j], p_velocity_0[j], p_velocity_1[j]);
             
                 force = 0.f, acceleration = 0.f; 
             
-                //#pragma omp parallel for default(none) shared(distance, force, direction,min,p_mass,p_velocity_0,p_velocity_1,p_position_0,p_position_1,p1) private(body_count) 
+                #pragma omp parallel for default(none) shared(distance, force, direction,min,p_mass,p_velocity_0,p_velocity_1,p_position_0,p_position_1,p1,body_count) 
                 for (int k = 0; k < body_count; ++k)
                 {
                     if (k == min) continue;
