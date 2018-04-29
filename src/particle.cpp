@@ -52,7 +52,7 @@ class Particle
             
                 force = 0.f, acceleration = 0.f; 
             
-                #pragma omp parallel for default(none) shared(distance, force, direction) private(body_count,min,p_mass,p_velocity_0,p_velocity_1,p_position_0,p_position_1,p1) 
+                #pragma omp parallel for default(none) shared(distance, force, direction,min,p_mass,p_velocity_0,p_velocity_1,p_position_0,p_position_1,p1) private(body_count) 
                 for (int k = 0; k < body_count; ++k)
                 {
                     if (k == min) continue;
