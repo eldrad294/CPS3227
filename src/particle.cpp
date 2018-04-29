@@ -72,7 +72,7 @@ class Particle
                 
                 // Integrate velocity (m/s)
                 p1.Velocity += acceleration;
-                //std::cout << "Position0: " << p1.Position[0] << " Velocity0: " << p1.Velocity[0] << "\n";
+                
                 // Update Velocities
                 p_local_velocity_0[counter] = p1.Velocity[0];
                 p_local_velocity_1[counter] = p1.Velocity[1];
@@ -84,7 +84,7 @@ class Particle
         /*
         * Update particle positions
         */
-        void MoveBodies(int body_count, float *p_mass, float *p_velocity_0, float *p_velocity_1, float *p_local_position_0, float *p_local_position_1, float p_deltaT, int world_rank, int world_size)
+        void MoveBodies(int body_count, float *p_mass, float *p_velocity_0, float *p_velocity_1, float *p_position_0, float *p_position_1, float *p_local_position_0, float *p_local_position_1, float p_deltaT, int world_rank, int world_size)
         {
             short balanced_split, min, max;
             short counter=0;
@@ -103,8 +103,8 @@ class Particle
             //#pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
             for (int j = min; j <= max; ++j)
             {
-                p_local_position_0[counter] += p_velocity_0[j] * p_deltaT;
-                p_local_position_1[counter] += p_velocity_1[j] * p_deltaT;
+                p_local_position_0[counter] = p_position_0[j] + (p_velocity_0[j] * p_deltaT);
+                p_local_position_1[counter] = p_position_1[j] + (p_velocity_1[j] * p_deltaT);
                 counter++;
             }
         }
