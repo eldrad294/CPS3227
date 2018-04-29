@@ -104,7 +104,7 @@ class Particle
                max = body_count;
             }
 
-            #pragma omp parallel for default(none) shared(p_local_position_0, p_local_position_1, counter,p_velocity_0,p_velocity_1,p_position_0,p_position_1,min,max) private(p_deltaT)
+            #pragma omp parallel for default(none) shared(p_local_position_0, p_local_position_1, counter,p_velocity_0,p_velocity_1,p_position_0,p_position_1,min,max,p_deltaT)
             for (int j = min; j <= max; ++j)
             {
                 p_local_position_0[counter] = p_position_0[j] + (p_velocity_0[j] * p_deltaT);
