@@ -10,7 +10,7 @@ class FileHandler{
         /*
         * Commit particle masses and positions to file in CSV format
         */
-        void PersistPositions(const std::string &p_strFilename, std::vector<Particle> &p_bodies, std::string enable_output)
+        void PersistPositions(const std::string &p_strFilename, int body_count, float *mass, float *p_position_0, float *p_position_1, std::string enable_output)
         {
             if (enable_output == "output_on")
             {
@@ -19,11 +19,11 @@ class FileHandler{
             std::ofstream output(p_strFilename.c_str());
             if (output.is_open())
             {	
-                for (unsigned j = 0; j < p_bodies.size(); j++)
+                for (int j = 0; j < body_count; j++)
                 {
-                    output << 	p_bodies[j].Mass << ", " <<
-                        p_bodies[j].Position.Element[0] << ", " <<
-                        p_bodies[j].Position.Element[1] << std::endl;
+                    output << 	mass[j] << ", " <<
+                        p_position_0[j] << ", " <<
+                        p_position_1[j] << std::endl;
                 }
                 output.close();
             }
@@ -45,7 +45,7 @@ class FileHandler{
 
         Returns a vector list with all loaded particles from file
         */
-        void read_from_file(std::string file_path, std::string enable_output, std::vector<Particle> &p_bodies)
+        void read_from_file(std::string file_path, std::string enable_output, float *p_mass, float *p_position_0, float *p_position_1)
         {
             std::string line;
             std::string temp_line;
@@ -55,9 +55,7 @@ class FileHandler{
             std::string temp_Y;
             char delimeter = ',';
             short comma_counter;
-            float mass;
-            float X;
-            float Y;
+            int iteration_counter = 0;
 
             /*
             Opens input file at specified path 
@@ -88,14 +86,11 @@ class FileHandler{
                     }
 
                     // Type Conversion from string to float values
-                    mass = atof(temp_mass.c_str());
-                    X = atof(temp_X.c_str());
-                    Y = atof(temp_Y.c_str());
-                    p_bodies.push_back(Particle(mass, X, Y));
-                    // std::cout << mass << "\n";
-                    // std::cout << X << "\n";
-                    // std::cout << Y << "\n";
-                    // std::cout << "--------------\n";
+                    p_mass[iteration_counter] = atof(temp_mass.c_str());
+                    p_position_0[iteration_counter] = atof(temp_X.c_str());
+                    p_position_1[iteration_counter] = atof(temp_Y.c_str());
+
+                    iteration_counter++;
                 }
                 myfile.close();
                 if (enable_output == "output_on")

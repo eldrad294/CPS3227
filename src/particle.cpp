@@ -15,54 +15,58 @@ class Particle
 
         Particle(){}
 
-        Particle(float p_Mass, float p_X, float p_Y) 
+        Particle(float p_Mass, float p_X, float p_Y, float p_Z, float p_V) 
         { 
             Position = Vector2(p_X, p_Y);
-            Velocity = Vector2(0.f, 0.f); // Initialize particle with velocity vector of 0
+            Velocity = Vector2(p_Z, p_V); 
             Mass = p_Mass;
         }
 
         /*
         * Compute forces of particles exerted on one another
         */
-        void ComputeForces(std::vector<Particle> &p_bodies,std::vector<Particle> &p_localbodies, float p_gravitationalTerm, int world_rank, int world_size)
+        void ComputeForces(int body_count, float *p_mass, float *p_velocity_0, float *p_velocity_1, float *p_position_0, float *p_position_1, float *p_local_velocity_0, float *p_local_velocity_1, float p_gravitationalTerm, int world_rank, int world_size)
         {
             Vector2 direction, force, acceleration;
             float distance;
-            unsigned balanced_split, min, max;
+            short balanced_split, min, max;
+            short counter=0;
 
             // Calculating partition split, and current range of bodies to calculate for current node
-            balanced_split = p_bodies.size() / world_size;
+            balanced_split = body_count / world_size;
             min = balanced_split * world_rank;
             max = min + balanced_split - 1;
 
             // Cater for uneven partition splits
             if(world_rank == world_size-1)
             {
-               max = p_bodies.size();
+               max = body_count;
             }
 
-            // Creating local vector of bodies upon which to perform particle lookup
-            p_localbodies.assign(p_bodies.begin() + min, p_bodies.begin() + max);
-            //std::cout << "Rank:" << world_rank << " BalancedSplit:" << balanced_split << " Min:" << min << " Max:" << max << "\n";
-
             //#pragma omp parallel for default(none) private(acceleration) shared(p_localbodies,p_bodies, min, p_gravitationalTerm, force)
-            for (size_t j = 0; j < p_localbodies.size(); ++j)
+            for (int j = min; j < max; ++j)
             {
-                Particle &p1 = p_localbodies[j];
+                Particle p1(p_mass[j], p_position_0[j], p_position_1[j], p_velocity_0[j], p_velocity_1[j]);
+                // p1.Mass = p_mass[j];
+                // p1.Velocity[0] = p_velocity_0[j];
+                // p1.Velocity[1] = p_velocity_1[j];
+                // p1.Position[0] = p_position_0[j];
+                // p1.Position[1] = p_position_1[j];
             
                 force = 0.f, acceleration = 0.f; 
-                // if (min == 0){
-                //     std:: cout << "Velocity0: "<< p1.Velocity[0] << " Velocity1: "<<p1.Velocity[1] << " Acceleration0: "<< acceleration[0] 
-                //     << " Acceleration1: " << acceleration[1] << " Direction0: " << direction[0] << " Direction1: " << direction[1] << "\n";
-                // }
             
                 //#pragma omp parallel for default(none) private(direction,distance) shared(j,p1,p_bodies,min,force)
-                for (size_t k = 0; k < p_bodies.size(); ++k)
+                for (int k = 0; k < body_count; ++k)
                 {
                     if (k == min) continue;
-                
-                    Particle &p2 = p_bodies[k];
+
+                    Particle p2(p_mass[k], p_position_0[k], p_position_1[k], p_velocity_0[k], p_velocity_1[k]);
+                    // Particle &p2;
+                    // p2.Mass = p_mass[j];
+                    // p2.Velocity[0] = p_velocity_0[k];
+                    // p2.Velocity[1] = p_velocity_1[k];
+                    // p2.Position[0] = p_position_0[k];
+                    // p2.Position[1] = p_position_1[k];
                     
                     // Compute direction vector
                     direction = p2.Position - p1.Position;
@@ -80,12 +84,10 @@ class Particle
                 // Integrate velocity (m/s)
                 p1.Velocity += acceleration;
 
-                p_localbodies[j].Velocity = p1.Velocity;
-
-                // if (p_localbodies[j].Velocity[0] < .5 or p_localbodies[j].Velocity[1] < .5){
-                //     std::cout << "Iteration: " << min << " Velocity0: " << p_localbodies[j].Velocity[0] << " Velocity1: " << p_localbodies[j].Velocity[1] << " Distance: " << distance << "\n";
-                // }
-                min++;
+                // Update Velocities
+                p_local_velocity_0[counter] = p1.Velocity[0];
+                p_local_velocity_1[counter] = p1.Velocity[1];
+                counter++;
             }
             //std::cout << "Position0: " << p_localbodies[20].Position[0] << " Position1: " << p_localbodies[20].Position[1] << " Velocity0: " << p_localbodies[20].Velocity[0] << " Velocity1: " << p_localbodies[20].Velocity[1] << " WorldRank: " << world_rank << "\n";
         }
@@ -93,29 +95,29 @@ class Particle
         /*
         * Update particle positions
         */
-        void MoveBodies(std::vector<Particle> &p_bodies, std::vector<Particle> &p_localbodies, float p_deltaT, int world_rank, int world_size)
+        void MoveBodies(int body_count, float *p_mass, float *p_velocity_0, float *p_velocity_1, float *p_local_position_0, float *p_local_position_1, float p_deltaT, int world_rank, int world_size)
         {
-            unsigned balanced_split, min, max;
+            short balanced_split, min, max;
+            short counter=0;
 
-            // Calculating balanced split, and current range of bodies to calculate for current node
-            balanced_split = p_bodies.size() / world_size;
+            // Calculating partition split, and current range of bodies to calculate for current node
+            balanced_split = body_count / world_size;
             min = balanced_split * world_rank;
             max = min + balanced_split - 1;
 
             // Cater for uneven partition splits
             if(world_rank == world_size-1)
             {
-               max = p_bodies.size();
+               max = body_count;
             }
-            // Creating local vector of bodies upon which to perform particle lookup
-            p_localbodies.assign(p_bodies.begin() + min, p_bodies.begin() + max);
 
             //#pragma omp parallel for default(none) shared(p_localbodies, p_bodies, p_deltaT)
-            for (size_t j = 0; j < p_localbodies.size(); ++j)
+            for (int j = min; j < max; ++j)
             {
-                p_localbodies[j].Position += p_localbodies[j].Velocity * p_deltaT;
+                p_local_position_0[counter] += p_velocity_0[j] * p_deltaT;
+                p_local_position_1[counter] += p_velocity_1[j] * p_deltaT;
+                counter++;
             }
-            //std::cout << "Position0: " << p_localbodies[20].Position[0] << " Position1: " << p_localbodies[20].Position[1] << " Velocity0: " << p_localbodies[20].Velocity[0] << " Velocity1: " << p_localbodies[20].Velocity[1] << " WorldRank: " << world_rank << "\n";
         }
 };
 #endif
