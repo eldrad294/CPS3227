@@ -22,21 +22,21 @@ export OMP_NUM_THREADS=1
 
 # Num of Nodes(4)
 # File Body Count: (64)
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMPIx4
 
 # File Body Count: (1024)
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 64 output_off OPENMPIx4
 
 # File Body Count: (4096)
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 64 output_off OPENMPIx4
 
 # File Body Count: (16384)
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 64 output_off OPENMPIx4

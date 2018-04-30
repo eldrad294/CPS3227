@@ -19,88 +19,88 @@ echo "Got $NSLOTS processor(s)."
 
 # File Body Count: (64)
 export OMP_NUM_THREADS=1
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
 export OMP_NUM_THREADS=2
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
 export OMP_NUM_THREADS=4
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
 export OMP_NUM_THREADS=8
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
 export OMP_NUM_THREADS=12
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMP
 
 # File Body Count: (1024)
 export OMP_NUM_THREADS=1
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
 export OMP_NUM_THREADS=2
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
 export OMP_NUM_THREADS=4
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
 export OMP_NUM_THREADS=8
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
 export OMP_NUM_THREADS=12
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMP
 
 # File Body Count: (4096)
 export OMP_NUM_THREADS=1
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
 export OMP_NUM_THREADS=2
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
 export OMP_NUM_THREADS=4
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
 export OMP_NUM_THREADS=8
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
 export OMP_NUM_THREADS=12
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMP
 
 # File Body Count: (16384)
 export OMP_NUM_THREADS=1
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
 export OMP_NUM_THREADS=2
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
 export OMP_NUM_THREADS=4
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
 export OMP_NUM_THREADS=8
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
 export OMP_NUM_THREADS=12
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
-./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
+./CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMP
