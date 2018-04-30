@@ -19,10 +19,6 @@ Constant Declarations
 /*
 Method Prototypes
 */
-// void PersistPositions(const std::string, int, float, float, float, float);
-// void read_from_file(std::string, std::string, float, float, float);
-// void reportInfo(std::string, double);
-// void reportInfoToFile(std::string, double);
 double captureTimestamp(void);
 /*
 Main Routine
@@ -127,7 +123,7 @@ int main(int argc, char **argv)
         p.ComputeForces(body_count, mass, velocity_0, velocity_1, position_0, position_1, local_velocity_0, local_velocity_1, gTerm, world_rank, world_size);
         
         //Synchronize step
-        MPI_Barrier(MPI_COMM_WORLD);
+        // MPI_Barrier(MPI_COMM_WORLD);
         //std::cout <<"world_rank:"<<world_rank<< " local_velocity_0:"<<local_velocity_0[0]<<"\n";        
         
         //Gather all updated velocities into head node
@@ -145,7 +141,7 @@ int main(int argc, char **argv)
 	    p.MoveBodies(body_count, mass, velocity_0, velocity_1, position_0, position_1, local_position_0, local_position_1, deltaT, world_rank, world_size);	
 
         //Synchronize step
-        MPI_Barrier(MPI_COMM_WORLD);
+        //MPI_Barrier(MPI_COMM_WORLD);
 
         //Gather all updated positions into head node
         MPI_Gather(&local_position_0, body_count / world_size, MPI_FLOAT, position_0, body_count / world_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
