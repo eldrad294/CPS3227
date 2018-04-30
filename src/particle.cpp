@@ -45,14 +45,14 @@ class Particle
                max = body_count;
             }
             
-            #pragma omp parallel for default(none) shared(distance, direction, p_local_velocity_0,p_local_velocity_1,counter,min,max,p_mass,p_position_0,p_position_1,acceleration,force,p_gravitationalTerm,p_velocity_0,p_velocity_1,body_count)
+            #pragma omp parallel for default(none) shared(force, acceleration, distance, direction, p_local_velocity_0,p_local_velocity_1,counter,p_position_0,p_position_1,p_velocity_0,p_velocity_1) firstprivate(min,max,p_mass,body_count,p_gravitationalTerm)
             for (int j = min; j <= max; ++j)
             {
                 Particle p1(p_mass[j], p_position_0[j], p_position_1[j], p_velocity_0[j], p_velocity_1[j]);
             
                 force = 0.f, acceleration = 0.f; 
             
-                #pragma omp parallel for default(none) shared(distance, force, direction,min,p_mass,p_velocity_0,p_velocity_1,p_position_0,p_position_1,p1,body_count) 
+                #pragma omp parallel for default(none) shared(distance, force, direction,p_velocity_0,p_velocity_1,p_position_0,p_position_1) firstprivate(min,p_mass,body_count,p1)
                 for (int k = 0; k < body_count; ++k)
                 {
                     if (k == min) continue;
@@ -86,7 +86,7 @@ class Particle
         /*
         * Update particle positions
         */
-        void MoveBodies(int body_count, float *p_mass, float *p_velocity_0, float *p_velocity_1, float *p_position_0, float *p_position_1, float *p_local_position_0, float *p_local_position_1, float p_deltaT, int world_rank, int world_size)
+        void MoveBodies(int body_count, float *p_velocity_0, float *p_velocity_1, float *p_position_0, float *p_position_1, float *p_local_position_0, float *p_local_position_1, float p_deltaT, int world_rank, int world_size)
         {
             short balanced_split = 0; 
             short min = 0; 
@@ -104,7 +104,7 @@ class Particle
                max = body_count;
             }
 
-            #pragma omp parallel for default(none) shared(p_local_position_0, p_local_position_1, counter,p_velocity_0,p_velocity_1,p_position_0,p_position_1,min,max,p_deltaT)
+            //#pragma omp parallel for default(none) shared(p_local_position_0, p_local_position_1, counter,p_velocity_0,p_velocity_1,p_position_0,p_position_1) firstprivate(p_deltaT,min,max)
             for (int j = min; j <= max; ++j)
             {
                 p_local_position_0[counter] = p_position_0[j] + (p_velocity_0[j] * p_deltaT);
