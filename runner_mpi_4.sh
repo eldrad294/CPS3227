@@ -27,16 +27,16 @@ mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_
 mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_64.txt 64 output_off OPENMPIx4
 
 # File Body Count: (1024)
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 64 output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 64 output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_1024.txt 1024 output_off OPENMPIx4
 
 # File Body Count: (4096)
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 64 output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 64 output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_4096.txt 4096 output_off OPENMPIx4
 
 # File Body Count: (16384)
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 64 output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 64 output_off OPENMPIx4
-mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 64 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMPIx4
+mpirun -npernode 1 CPS3227_Assignment/build/main CPS3227_Assignment/input/input_16384.txt 16384 output_off OPENMPIx4

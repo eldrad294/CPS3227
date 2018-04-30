@@ -4,7 +4,7 @@
 #$ -N OPENMP
 #$ -cwd
 #$ -S /bin/bash
-#$ -pe openmpi_4x1 4
+#$ -pe openmpi_12x1 12
 
 # If modules are needed, source modules environment
 . /etc/profile.d/modules.sh
