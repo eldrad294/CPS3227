@@ -102,8 +102,6 @@ int main(int argc, char **argv)
     //Broadcast particle (unchanging) masses to all slaves - Done once at the beginning for efficiency
     MPI_Bcast(mass,body_count,MPI_FLOAT,0,MPI_COMM_WORLD);
 
-    //std::cout << "World_Rank: " << world_rank << " Mass10: " << mass[10] << "\n";
-
     if (world_rank == 0)
     {
         // Take Initial Time Measurement
