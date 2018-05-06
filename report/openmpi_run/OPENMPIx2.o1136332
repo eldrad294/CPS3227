@@ -1,0 +1,133 @@
+Got 8 processors(s).
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.92866e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.63835 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.92867e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.19312 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.92867e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.15877 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.92883e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 162.306 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.92899e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 161.477 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.92916e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 162.389 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.93104e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1881.17 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.93285e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1810.94 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.93466e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1814.04 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.9627e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 28041.4 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.99124e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 28539.2 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.01931e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 28063.8 seconds
+--------------------------------------

@@ -1,0 +1,4 @@
+-unique -catch_rsh /cm/shared/apps/sge/current/default/spool/node008/active_jobs/1136337.1/pe_hostfile
+node008
+node018
+node034

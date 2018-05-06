@@ -1,0 +1,157 @@
+Got 16 processors(s).
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93039e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 4.6811 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93039e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 3.4825 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.9304e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.19849 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93048e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 79.6421 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93057e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 92.8652 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93066e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 87.3735 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.9317e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1038.46 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.93266e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 962.115 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.93357e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 909.461 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.94759e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 14018.6 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.96162e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 14029.5 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENMPIx4
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.97564e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 14018.4 seconds
+--------------------------------------

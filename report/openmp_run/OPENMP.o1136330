@@ -1,0 +1,601 @@
+Got 12 processor(s).
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81988e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.61729 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81988e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.58532 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81989e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.41818 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81989e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.03201 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81989e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1.82075 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81989e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1.82458 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81989e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1.55225 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.8199e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 4.60011 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.8199e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1.79134 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.8199e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 3.59786 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.8199e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1.75238 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81991e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1.30024 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81991e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 4.08135 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81992e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 6.14494 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 2.81992e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 4.72041 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82022e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 303.73 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82051e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 289.319 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82081e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 293.184 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82094e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 128.168 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82106e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 123.441 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82118e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 124.044 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82126e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 75.0506 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82133e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 76.0571 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82141e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 76.565 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82145e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 41.1463 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.8215e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 52.4991 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82155e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 40.601 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82157e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 29.3758 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.8216e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 27.7753 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 2.82163e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 27.9844 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.82516e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 3530 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.82869e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 3529.57 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.83221e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 3522.29 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.834e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1788.75 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.83578e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1778.27 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.83756e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1781.82 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.83846e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 901.865 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.83937e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 904.103 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.84027e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 901.766 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.84074e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 465.712 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.8412e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 467.24 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.84167e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 468.033 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.84199e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 317.727 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.84231e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 320.386 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 2.84263e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 325.587 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 2.89856e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 55928.7 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 2.95454e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 55977.2 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.01053e+06
+Number of processors = 12
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 55990.8 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.03856e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 28028.9 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.06658e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 28015 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.09459e+06
+Number of processors = 12
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 28012.7 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.10861e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 14019.5 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.12266e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 14053.3 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.13671e+06
+Number of processors = 12
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 14051.2 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.1438e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 7087.71 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.15089e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 7089.05 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.15797e+06
+Number of processors = 12
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 7083.18 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.16272e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 4745.88 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.16747e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 4745.03 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Execution Type: OPENMP
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.17221e+06
+Number of processors = 12
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 4745.72 seconds
+--------------------------------------

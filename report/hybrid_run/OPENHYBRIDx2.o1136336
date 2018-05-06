@@ -1,0 +1,661 @@
+Got 24 processors(s).
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93047e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 4.77731 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93047e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.20021 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93047e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.21281 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93048e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 4.68569 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93049e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 11.0573 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.9305e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 11.8931 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93051e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 9.87462 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93053e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 12.7913 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93054e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 12.3204 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93054e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 3.08315 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93055e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 8.90629 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93055e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1.94258 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93056e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 2.13846 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93056e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1.96241 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_64.txt
+wtime = 3.93056e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1.88231 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93073e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 163.435 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93088e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 159.35 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93104e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 153.953 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93118e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 139.965 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.9313e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 122.083 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93142e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 119.236 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.9315e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 73.645 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93157e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 68.6947 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93164e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 73.8213 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93169e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 54.41 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93175e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 58.1326 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93182e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 68.5313 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93188e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 58.1685 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.93194e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 58.9824 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_1024.txt
+wtime = 3.932e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 60.3363 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.93381e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1807.46 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.93562e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1806.63 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.93742e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1804.54 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.93919e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1768.51 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94095e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1761.63 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94271e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 1762.82 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94362e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 899.903 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94453e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 914.203 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94542e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 891.972 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94591e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 483.053 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94639e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 485.97 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94687e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 480.351 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94728e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 409.681 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.9477e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 415.041 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_4096.txt
+wtime = 3.94811e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 408.374 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 3.97646e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 28350.4 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.00481e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 28347.1 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.03315e+06
+Number of processors = 6
+Number of threads = 1
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 28344.6 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.06077e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 27616.1 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.08818e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 27410.7 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.11557e+06
+Number of processors = 6
+Number of threads = 2
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 27387.1 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.12831e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 12741.9 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.14118e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 12863.6 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.15375e+06
+Number of processors = 6
+Number of threads = 4
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 12566.7 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.16071e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 6960.65 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.16767e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 6958.46 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.17462e+06
+Number of processors = 6
+Number of threads = 8
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 6945.57 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.18042e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 5800.19 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.18621e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 5788.84 seconds
+--------------------------------------
+Initializing MPI_Environment..
+Initializing MPI_Environment..
+Execution Type: OPENHYBRIDx2
+Input File: CPS3227_Assignment/input/input_16384.txt
+wtime = 4.19204e+06
+Number of processors = 6
+Number of threads = 12
+Clock Frequency = 0.000999848
+1/wtick = 1000.15
+Total Elapsed Time: 5833.94 seconds
+--------------------------------------
