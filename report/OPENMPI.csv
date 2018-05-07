@@ -1,4 +1,4 @@
-Run Type,NumCPU,NumNodes,ParticleCount,Total Elapsed Time 1(s),Total Elapsed Time 2(s),Total Elapsed Time 3(s),Total Elapsed Average(s)
+Run Type,NumCPU,NumNodes,ParticleCount,Total Elapsed Time 1(s),Total Elapsed Time 2(s),Total Elapsed Time 3(s),Total Elapsed Time Average(seconds)
 OPENMPI,1,1,64,2.93061,2.95098,2.61224,2.831276667
 OPENMPI,1,2,64,2.63835,2.19312,2.15877,2.33008
 OPENMPI,1,3,64,2.67137,2.43089,2.0704,2.390886667

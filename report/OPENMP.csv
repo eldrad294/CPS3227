@@ -1,4 +1,4 @@
-Run Type,NumCPU,NumNodes,ParticleCount,Total Elapsed Time 1(s),Total Elapsed Time 2(s),Total Elapsed Time 3(s),Total Elapsed Average(s)
+Run Type,NumCPU,NumNodes,ParticleCount,Total Elapsed Time 1(s),Total Elapsed Time 2(s),Total Elapsed Time 3(s),Total Elapsed Time Average(seconds)
 OPENMP,1,1,64,2.61729,2.58532,2.41818,2.540263333
 OPENMP,2,1,64,2.03201,1.82075,1.82458,1.892446667
 OPENMP,3,1,64,,,,0
