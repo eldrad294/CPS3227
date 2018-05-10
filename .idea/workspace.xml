@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87b3039c-0e1b-4d3a-9efe-9cfa4a270622" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/report/Results.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/report/rawresults/OPENHYBRIDx1.o1136523" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/report/rawresults/OPENHYBRIDx2.o1136524" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/report/rawresults/OPENHYBRIDx3.o1136525" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/report/rawresults/OPENHYBRIDx4.o1136526" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/report/rawresults/OPENMP.o1136522" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x1) - 1024 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x1) - 1024 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x1) - 16384 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x1) - 16384 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x1) - 4096 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x1) - 4096 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x1) - 64 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x1) - 64 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x2) - 1024 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x2) - 1024 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x2) - 16384 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x2) - 16384 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x2) - 4096 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x2) - 4096 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x2) - 64 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x2) - 64 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x3) - 1024 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x3) - 1024 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x3) - 16384 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x3) - 16384 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x3) - 4096 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x3) - 4096 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x3) - 64 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x3) - 64 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x4) - 1024 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x4) - 1024 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x4) - 16384 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x4) - 16384 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x4) - 4096 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x4) - 4096 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x4) - 64 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENHYBRID(x4) - 64 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENMP - 1024 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENMP - 1024 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENMP - 16384 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENMP - 16384 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENMP - 4096 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENMP - 4096 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENMP - 64 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENMP - 64 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENMPI - 1024 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENMPI - 1024 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENMPI - 16384 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENMPI - 16384 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENMPI - 4096 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENMPI - 4096 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/graphs/OPENMPI - 64 Particles.png" afterPath="$PROJECT_DIR$/report/graphs/OPENMPI - 64 Particles.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/CPS3227.iml" afterPath="$PROJECT_DIR$/.idea/CPS3227.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/OPENHYBRID.csv" afterPath="$PROJECT_DIR$/report/OPENHYBRID.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report/OPENMP.csv" afterPath="$PROJECT_DIR$/report/OPENMP.csv" />
-    </list>
+    <list default="true" id="87b3039c-0e1b-4d3a-9efe-9cfa4a270622" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,8 +21,8 @@
       <file leaf-file-name="graph_generator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/report/graph_generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-310">
-              <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+            <state relative-caret-position="251">
+              <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
               <folding>
                 <element signature="e#19#38#0" expanded="true" />
               </folding>
@@ -393,8 +357,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/report/graph_generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-310">
-          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        <state relative-caret-position="251">
+          <caret line="42" column="9" lean-forward="true" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
           <folding>
             <element signature="e#19#38#0" expanded="true" />
           </folding>
