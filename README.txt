@@ -14,8 +14,6 @@ DIRECTORY LAYOUT
   |- assign_2018.pdf                     # Assignment Specification
   |- FinalReport.docx                    # Submitted Report Documentation
   |- Plagiarism_Declaration_Form.pdf     # Signed Plagiarism Form
-|- help                                  #
-  |- UOM Lectures                        # Folder containing help resources 
 |- input                                 #       
   |- input_64.txt                        # Input File (64 Particles)
   |- input_1024.txt                      # Input File (1024 Particles)

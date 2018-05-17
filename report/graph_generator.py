@@ -3,7 +3,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import numpy.polynomial.polynomial as poly  # https://stackoverflow.com/questions/11856206/multivariate-polynomial-best-fit-curve-in-python
 #
 # User Input Parameters
 save_to_disk = True  # If set to false, will output to screen
@@ -39,11 +38,6 @@ def draw_line_graph(graph_x, x_title, graph_y, y_title, graph_title, to_disk):
     plt.xlabel(x_title)
     plt.ylabel(y_title)
     plt.title(graph_title)
-    #coefs = poly.polyfit(graph_x, graph_y, 2)
-    #ffit = poly.Polynomial(coefs)  # instead of np.poly1d
-    #ffit = poly.polyval(graph_x, coefs)
-    #plt.plot(graph_x, ffit)
-    #plt.plot(graph_x, ffit(graph_x))
     plt.plot(graph_x, graph_y)
     plt.title(graph_title)
     if to_disk:
@@ -52,19 +46,28 @@ def draw_line_graph(graph_x, x_title, graph_y, y_title, graph_title, to_disk):
         plt.show()
     plt.close()
 #
-def draw_scatter_graph(graph_x, x_title, graph_y, y_title, graph_title, to_disk):
+def draw_best_curve_graph(graph_x, x_title, graph_y, y_title, graph_title, to_disk):
     """
-    Wrapper function to generate graph visualization (scatter graph)
+    Wrapper function to generate graph visualization (best fit curve graph)
     :param graph_x:
     :param graph_y:
     :param graph_title:
     :param to_disk: When set to True, saves graph to disk
     :return:
     """
-    plt.scatter(graph_x, graph_y)
+    plt.axis([1, max(graph_x), 0, max(graph_y)])
     plt.xlabel(x_title)
     plt.ylabel(y_title)
     plt.title(graph_title)
+    #
+    z = np.polyfit(graph_x, graph_y, 2)
+    f = np.poly1d(z)
+    # calculate new x's and y's
+    x_new = np.linspace(graph_x[0], graph_x[-1], 50)
+    y_new = f(x_new)
+    #
+    plt.plot(graph_x, graph_y, 'o', x_new, y_new)
+    # plt.plot(graph_x, graph_y)
     plt.title(graph_title)
     if to_disk:
         plt.savefig(save_to_disk_path + graph_title)
@@ -92,8 +95,8 @@ def generate_results(type, dataframe, x_title, y_title, iterations, save_to_disk
             graph_title_total = row['Run Type'] + "_" + graph_title + " - " + str(row['ParticleCount']) + " Particles"
             if type == "line":
                 draw_line_graph(graph_x, x_title, graph_y, y_title, graph_title_total, save_to_disk)
-            elif type == "scatter":
-                draw_scatter_graph(graph_x, x_title, graph_y, y_title, graph_title_total, save_to_disk)
+            elif type == "poly":
+                draw_best_curve_graph(graph_x, x_title, graph_y, y_title, graph_title_total, save_to_disk)
             else:
                 raise("Type not supported!")
 """
@@ -140,39 +143,39 @@ Speedup Plots vs Time Plots
 """
 #
 # OPENMP Speedup Iterations
-generate_results(type="scatter", dataframe=df_openmp[0:12],  x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openmp[12:24], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openmp[24:36], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openmp[36:48], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openmp[0:12],  x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openmp[12:24], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openmp[24:36], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openmp[36:48], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
 #
 # OPENMPI Iterations
-generate_results(type="scatter", dataframe=df_openmpi[0:4],   x_title=node_axis, y_title=speedup_axis, iterations=4, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openmpi[4:8],   x_title=node_axis, y_title=speedup_axis, iterations=4, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openmpi[8:12],  x_title=node_axis, y_title=speedup_axis, iterations=4, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openmpi[12:16], x_title=node_axis, y_title=speedup_axis, iterations=4, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openmpi[0:4],   x_title=node_axis, y_title=speedup_axis, iterations=4, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openmpi[4:8],   x_title=node_axis, y_title=speedup_axis, iterations=4, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openmpi[8:12],  x_title=node_axis, y_title=speedup_axis, iterations=4, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openmpi[12:16], x_title=node_axis, y_title=speedup_axis, iterations=4, save_to_disk=save_to_disk, graph_title="SpeedUp")
 #
 # OPENHYBRID Iterations (64)
-generate_results(type="scatter", dataframe=df_openhybrid[0:12],  x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[12:24], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[24:36], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[36:48], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[0:12],  x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[12:24], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[24:36], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[36:48], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
 #
 # OPENHYBRID Iterations (1024)
-generate_results(type="scatter", dataframe=df_openhybrid[48:60], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[60:72], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[72:84], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[84:96], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[48:60], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[60:72], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[72:84], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[84:96], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
 #
 # OPENHYBRID Iterations (4096)
-generate_results(type="scatter", dataframe=df_openhybrid[96:108],  x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[108:120], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[120:132], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[132:144], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[96:108],  x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[108:120], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[120:132], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[132:144], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
 #
 # OPENHYBRID Iterations (16384)
-generate_results(type="scatter", dataframe=df_openhybrid[144:156], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[156:168], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[168:180], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
-generate_results(type="scatter", dataframe=df_openhybrid[180:192], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[144:156], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[156:168], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[168:180], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
+generate_results(type="poly", dataframe=df_openhybrid[180:192], x_title=thread_axis, y_title=speedup_axis, iterations=12, save_to_disk=save_to_disk, graph_title="SpeedUp")
 
 
