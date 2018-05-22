@@ -55,7 +55,7 @@ def draw_best_curve_graph(graph_x, x_title, graph_y, y_title, graph_title, to_di
     :param to_disk: When set to True, saves graph to disk
     :return:
     """
-    plt.axis([1, max(graph_x), 0, max(graph_y)])
+    plt.axis([1, max(graph_x), 1, max(graph_y)*1.5])
     plt.xlabel(x_title)
     plt.ylabel(y_title)
     plt.title(graph_title)
